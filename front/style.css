@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    background-color: #cce6ff;
+}
+
+#container {
+    width: 100%;
+    
+}
+
+#logo {
+    width: 70%;
+    margin: 20px auto;
+}
+
+#logo img{
+    width: 100%;
+}

@@ -18,7 +18,7 @@ class Request:
             + "case=" + str(case) + '&province=' + province
             + '&benefit=' + benefit + '&format=' + self.format)
         # print debug url
-        # print("request: " + self.reqiest)
+        print("request: " + self.reqiest)
 
     def send_request(self):
         if self.reqiest is not None:

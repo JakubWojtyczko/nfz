@@ -7,6 +7,7 @@ class JsonParser:
         self.data = data
         self.parsed = None
         self.institutions = None
+        self.response = None
         
     def parse(self):
         self.parsed = json.loads(self.data)
@@ -25,8 +26,9 @@ class JsonParser:
             new_institution.provider = self.try_figure_out(row, "provider")
             new_institution.regon = self.try_figure_out(row, "regon-provider")
 
-            new_institution.p_print()
+            # new_institution.p_print()
             self.institutions.append(new_institution)
+        self.create_response_dict()
 
     def try_figure_out(self, r, name):
         try:
@@ -36,3 +38,18 @@ class JsonParser:
             # value not found
             # will be None = N/A
             return None
+
+    def create_response_dict(self):
+        response_list = []
+        for new_institution in self.institutions:
+            new_dict = {}
+            new_dict['address'] = new_institution.address
+            new_dict['benefit'] = new_institution.benefit
+            new_dict['car_park'] = new_institution.car_park
+            new_dict['locality'] = new_institution.locality
+            new_dict['phone'] = new_institution.phone
+            new_dict['place'] = new_institution.place
+            new_dict['provider'] = new_institution.provider
+            new_dict['regon'] = new_institution.regon
+            response_list.append(new_dict)
+        self.response = response_list

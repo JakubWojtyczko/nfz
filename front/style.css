@@ -16,3 +16,47 @@ body {
 #logo img{
     width: 100%;
 }
+
+#search {
+    width:100%;
+    text-align: center;
+}
+
+#search select {
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    margin:  5px;
+}
+
+#search button {
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#search input {
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.form-warning {
+    color:red;
+}
+
+#table-res table {
+    border: 1px solid black;
+    text-align:center;
+    margin: 10px auto;
+}
+
+#table-res table td {
+    border: 1px solid black;
+}

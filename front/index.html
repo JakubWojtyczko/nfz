@@ -7,6 +7,14 @@
     <meta charset="utf-8" >
     <meta name="description" content="NFZ - Czas leczy rany.">
     <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!-- Vue (out comment one of 2 following) -->
+    <!-- development -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- productions -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+    
   </head>
 
 
@@ -20,10 +28,55 @@
       </header>
       
       <content>
-        
+ 
+        <div id="search">
+          <form id="serach-form">
+            <select id="select-region" v-model='form_default.region'>
+              <option value="" disabled selected>Wybierz województwo *</option>
+              <option v-for="region in regions" v-bind:value="region.value">
+                {{ region.text }}
+              </option>
+            </select>
+            <br>
+            <section v-if="!region_selected">
+              <span class="form-warning" > Wybierz województwo </span>
+              <br>
+            </section>
+            <select id="select-cases" v-model='form_default.r_case'>
+              <option value="" disabled selected>Wybierz przypadek *</option>
+              <option v-for="case_ in r_cases" v-bind:value="case_.value">
+                {{ case_.text }}
+              </option>
+            </select>
+            <br>
+            <section v-if="!case_selected">
+              <span class="form-warning" > Wybierz przypadek </span>
+              <br>
+            </section>
+            <input type="text" v-model='form_default.benefit' placeholder="Benefit (np. przychodnia)">
+            <br>
+            <button v-on:click.prevent="posts" id="submit">
+               Wyszukaj!
+            </button>
+            <br>
+          </form>
+
+          <br>
+          
+          <section v-if="r_response" id="table-res">
+            <table>
+                <tr>
+                  <td> Benefit </td> <td> Miasto </td> <td> Adres </td> <td> Telefon </td>
+                </tr>
+                <tr v-for="row in data">
+                  <td> {{row.benefit}} </td> <td> {{row.locality}}  </td> <td> {{row.address}}  </td> <td> {{row.phone}}  </td>
+                </tr>
+            </table>
+          </section>
+        </div> <!-- div search -->
         
       </content>
-        
+      <script src="vue_common.js"> </script>
     </div> <!-- div container -->
   </body>
 

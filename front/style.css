@@ -15,6 +15,8 @@ body {
     text-align:center;
     background-color: white;
     border-radius: 10px;
+    min-width: 315px;
+    max-width: 950px;
 }
 
 #search-title {

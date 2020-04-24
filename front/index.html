@@ -7,6 +7,7 @@
     <meta charset="utf-8" >
     <meta name="description" content="NFZ - Czas leczy rany.">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- Vue (out comment one of 2 following) -->
     <!-- development -->
@@ -35,8 +36,10 @@
             <div id="search-title">
               Wyszukaj klinikę 
             </div>
+            
+              <!-- get region input -->
+            
               <div class="input-wrapper">
-                
                 <select v-model='form_default.region' :class="applyInputStyle(region_selected)">
                    <option value="" disabled selected>Wybierz województwo *</option>
                    <option v-for="region in regions" v-bind:value="region.value">
@@ -44,8 +47,10 @@
                    </option>
                  </select>
                  <br>
-
               </div> <!-- div input-wrapper -->
+              
+              <!-- get case input -->
+              
               <div class="input-wrapper">
                 <select id="select-cases" v-model='form_default.r_case' :class="applyInputStyle(case_selected)">
                   <option value="" disabled selected>Wybierz przypadek *</option>
@@ -55,8 +60,10 @@
                 </select>
                 <br>
               </div> <!-- div input-wrapper -->
+              
+              <!-- get region max rows number -->
+              
               <div class="input-wrapper">
-               
                 <select id="select-cases" v-model='form_default.r_number' :class="applyInputStyle(number_selected)">
                   <option value="" disabled selected>Wybierz ilość rekordów *</option>
                   <option v-for="number in numbers" v-bind:value="number.value">
@@ -64,47 +71,69 @@
                   </option>
                 </select>
                 <br>
-         
               </div> <!-- div input-wrapper -->
+              
+              <!-- get benefit input -->
+              
               <div class="input-wrapper">
                 <input type="text" v-model='form_default.benefit' placeholder="Benefit (np. fizjoterapia)">
               </div> <!-- div input-wrapper -->
+              
+              <!-- get location input -->
+              
               <div class="input-wrapper">
                 <input type="text" v-model='form_default.r_location' placeholder="Miejscowość (np. Kraków)">
               </div> <!-- div input-wrapper -->
-              <div class="input-wrapper">
-              <button v-on:click.prevent="posts" id="submit">
-                 Wyszukaj!
-              </button>
-              <section v-if="!case_selected || !number_selected || !region_selected">
-              <br>
-              <span class="form-warning"> Pola oznaczone (*) są wymagane </span>
-              </section>
               
+              <!-- submit input -->
+              
+              <div class="input-wrapper">
+                <button v-on:click.prevent="posts" id="submit">
+                  Wyszukaj!
+                </button>
+                <section v-if="!case_selected || !number_selected || !region_selected">
+                  <br>
+                  <span class="form-warning"> 
+                    Pola oznaczone (*) są wymagane 
+                  </span>
+                </section>
               </div> <!-- div input-wrapper -->
-              <div style="clear:both"></div>
+
+              <div style="clear:both"> <!-- clear floating elements --> </div>
               <br>
             </div> <!-- div input-container -->
           </form>
 
           <br>
           <section v-if="serverError">
-            <span class="form-warning" > Serwer niedostępny. Spróbuj później <br> [{{serverErrorInfo}}] </span>
+            <div class="unavailable-server-massage" > 
+                <i class="fa fa-exclamation-circle" style="font-size:48px;color:red"></i> <br>
+                <b>Serwer niedostępny. Spróbuj później</b> <br> 
+                <b>[{{serverErrorInfo}}]</b> 
+            </div>
           </section>
           <section v-if="r_response" id="table-res">
             
             <section v-if="data.length != 0">
                 <table>
                     <tr>
-                      <td> <b>Benefit</b> </td> <td> <b>Miasto</b> </td> <td><b> Ulica</b> </td> <td> <b>Telefon</b> </td>
+                      <td> <b>Benefit</b> </td> 
+                      <td> <b>Miasto</b>  </td> 
+                      <td> <b>Ulica</b>   </td> 
+                      <td> <b>Telefon</b> </td>
                     </tr>
                     <tr v-for="row in data">
-                      <td> {{row.benefit}} </td> <td> {{row.locality}}  </td> <td> {{row.address}}  </td> <td> {{row.phone}}  </td>
+                      <td> {{row.benefit}}  </td> 
+                      <td> {{row.locality}} </td> 
+                      <td> {{row.address}}  </td> 
+                      <td> {{row.phone}}    </td>
                     </tr>
                 </table>
               </section>
               <section v-if="data.length == 0">
-                <span style="font-size:20px"> Nie znaleniono rekordów. Sprawdź kryteria wyszukiwania </span>
+                <span style="font-size:20px"> 
+                  Nie znaleniono rekordów. Sprawdź kryteria wyszukiwania 
+                </span>
               </section>
               <br><br><br>
           </section>

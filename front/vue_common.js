@@ -60,6 +60,9 @@ new Vue({
     }
   },
   methods: {
+      applyInputStyle: function(isSelected) {
+          return [isSelected ? 'good-input-ok' : 'no-input-warning'];
+      },
       posts: function() {
           // first validate data
           var good = true

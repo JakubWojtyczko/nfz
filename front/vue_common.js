@@ -6,12 +6,15 @@ new Vue({
     return {
           region_selected: true,
           case_selected: true,
+          number_selected: true,
           r_response: false,
           data: null,
           form_default: {
               region: "",
               r_case: "",
-              benefit: ""
+              benefit: "",
+              r_number: "",
+              r_location: "",
           },
           regions: [
             { text: 'dolnośląskie', value: '01' },
@@ -34,7 +37,24 @@ new Vue({
           r_cases: [
             { text: 'stabilny', value: '1'},
             { text: 'pilny', value: '2'},
-          ]
+          ],
+          numbers: [
+            { text: '11', value: '11'},
+            { text: '12', value: '12'},
+            { text: '13', value: '13'},
+            { text: '14', value: '14'},
+            { text: '15', value: '15'},
+            { text: '16', value: '16'},
+            { text: '17', value: '17'},
+            { text: '18', value: '18'},
+            { text: '19', value: '19'},
+            { text: '20', value: '20'},
+            { text: '21', value: '21'},
+            { text: '22', value: '22'},
+            { text: '23', value: '23'},
+            { text: '24', value: '24'},
+            { text: '25', value: '25'},
+          ],
     }
   },
   methods: {
@@ -55,6 +75,13 @@ new Vue({
           } else {
               this.case_selected = true;
           }
+          if (!this.form_default.r_number) {
+              console.log("no number");
+              good = false;
+              this.number_selected = false;
+          } else {
+              this.number_selected = true;
+          }
           if(!good) {
               // missing form fields
               return;
@@ -69,7 +96,9 @@ new Vue({
               params: {
                 r_region: this.form_default.region,
                 r_case: this.form_default.r_case,
-                r_benefit: this.form_default.benefit
+                r_benefit: this.form_default.benefit,
+                r_number: this.form_default.r_number,
+                r_location: this.form_default.r_location
               }
           }).then(function(response){
             if(response.status == "200"){

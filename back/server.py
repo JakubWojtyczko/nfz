@@ -12,17 +12,19 @@ CORS(app)
 
 @app.route('/get', methods=['GET', 'POST'])
 def index():
-    print(request.args)
+    # print(request.args)
     region = request.args.get('r_region')
     case = request.args.get('r_case')
     benefit = request.args.get('r_benefit')
+    number = request.args.get('r_number')
+    location = request.args.get('r_location')
     req = Request()
-    req.create_request(region, benefit, case)
+    req.create_request(region, benefit, case, number, location)
     req.send_request()
     jp = JsonParser(req.rec_response())
     jp.parse()
     status_code = Response(status=200)
-    print(jp.response)
+    # print(jp.response)
     return jsonify(jp.response)
 
 if __name__ == '__main__':

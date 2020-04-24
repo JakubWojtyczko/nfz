@@ -3,6 +3,30 @@ body {
     background-color: #cce6ff;
 }
 
+#search {
+    width:100%;
+    text-align: center;
+    margin: 0;
+}
+
+#input-container {
+    max-width: 60%;
+    margin: 0 auto;
+    text-align:center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#search-title {
+    font-size: 25px;
+    padding: 10px 0;
+}
+
+.input-wrapper {
+    float: left;
+    margin: 5px auto;
+}
+
 #container {
     width: 100%;
     
@@ -17,11 +41,6 @@ body {
     width: 100%;
 }
 
-#search {
-    width:100%;
-    text-align: center;
-}
-
 #search select {
     width: 300px;
     height: 30px;
@@ -31,12 +50,12 @@ body {
 }
 
 #search button {
-    width: 300px;
-    height: 30px;
     text-align: center;
     font-size: 20px;
     margin: 5px;
     cursor: pointer;
+    height: 36px;
+    width: 304px;
 }
 
 #search input {
@@ -47,16 +66,24 @@ body {
     margin: 5px;
 }
 
+#search select {
+    height: 36px;
+    width: 304px;
+    color:balck;
+}
+
+
 .form-warning {
     color:red;
 }
 
 #table-res table {
-    border: 1px solid black;
     text-align:center;
     margin: 10px auto;
+    border-spacing: 5px 5px; 
 }
 
 #table-res table td {
-    border: 1px solid black;
+    max-width: 250px;
+    background-color: white;
 }

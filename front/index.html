@@ -31,47 +31,80 @@
  
         <div id="search">
           <form id="serach-form">
-            <select id="select-region" v-model='form_default.region'>
-              <option value="" disabled selected>Wybierz województwo *</option>
-              <option v-for="region in regions" v-bind:value="region.value">
-                {{ region.text }}
-              </option>
-            </select>
-            <br>
-            <section v-if="!region_selected">
-              <span class="form-warning" > Wybierz województwo </span>
+            <div id="input-container">
+            <div id="search-title">
+              Wyszukaj klinikę 
+            </div>
+              <div class="input-wrapper">
+                
+                <select id="select-region" v-model='form_default.region'>
+                   <option value="" disabled selected>Wybierz województwo *</option>
+                   <option v-for="region in regions" v-bind:value="region.value">
+                     {{ region.text }}
+                   </option>
+                 </select>
+                 <br>
+                 <section v-if="!region_selected">
+                   <span class="form-warning" > Wybierz województwo </span>
+                   <br>
+                 </section>
+              </div> <!-- div input-wrapper -->
+              <div class="input-wrapper">
+                <select id="select-cases" v-model='form_default.r_case'>
+                  <option value="" disabled selected>Wybierz przypadek *</option>
+                  <option v-for="case_ in r_cases" v-bind:value="case_.value">
+                      {{ case_.text }}
+                  </option>
+                </select>
+                <br>
+                <section v-if="!case_selected">
+                  <span class="form-warning" > Wybierz przypadek </span>
+                </section>
+              </div> <!-- div input-wrapper -->
+              <div class="input-wrapper">
+                <select id="select-cases" v-model='form_default.r_number'>
+                  <option value="" disabled selected>Wybierz ilość rekordów *</option>
+                  <option v-for="number in numbers" v-bind:value="number.value">
+                      {{ number.text }}
+                  </option>
+                </select>
+                <br>
+                <section v-if="!number_selected">
+                  <span class="form-warning" > Wybierz ilość rekordów </span>
+                </section>
+              </div> <!-- div input-wrapper -->
+              <div class="input-wrapper">
+                <input type="text" v-model='form_default.benefit' placeholder="Benefit (np. przychodnia)">
+              </div> <!-- div input-wrapper -->
+              <div class="input-wrapper">
+                <input type="text" v-model='form_default.r_location' placeholder="Miejscowość (np. Kraków)">
+              </div> <!-- div input-wrapper -->
+              <div class="input-wrapper">
+              <button v-on:click.prevent="posts" id="submit">
+                 Wyszukaj!
+              </button>
+              </div> <!-- div input-wrapper -->
+              <div style="clear:both"></div>
               <br>
-            </section>
-            <select id="select-cases" v-model='form_default.r_case'>
-              <option value="" disabled selected>Wybierz przypadek *</option>
-              <option v-for="case_ in r_cases" v-bind:value="case_.value">
-                {{ case_.text }}
-              </option>
-            </select>
-            <br>
-            <section v-if="!case_selected">
-              <span class="form-warning" > Wybierz przypadek </span>
-              <br>
-            </section>
-            <input type="text" v-model='form_default.benefit' placeholder="Benefit (np. przychodnia)">
-            <br>
-            <button v-on:click.prevent="posts" id="submit">
-               Wyszukaj!
-            </button>
-            <br>
+            </div> <!-- div input-container -->
           </form>
 
           <br>
           
           <section v-if="r_response" id="table-res">
-            <table>
-                <tr>
-                  <td> Benefit </td> <td> Miasto </td> <td> Adres </td> <td> Telefon </td>
-                </tr>
-                <tr v-for="row in data">
-                  <td> {{row.benefit}} </td> <td> {{row.locality}}  </td> <td> {{row.address}}  </td> <td> {{row.phone}}  </td>
-                </tr>
-            </table>
+            <section v-if="data.length != 0">
+                <table>
+                    <tr>
+                      <td> <b>Benefit</b> </td> <td> <b>Miasto</b> </td> <td><b> Ulica</b> </td> <td> <b>Telefon</b> </td>
+                    </tr>
+                    <tr v-for="row in data">
+                      <td> {{row.benefit}} </td> <td> {{row.locality}}  </td> <td> {{row.address}}  </td> <td> {{row.phone}}  </td>
+                    </tr>
+                </table>
+              </section>
+              <section v-if="data.length == 0">
+                <span style="font-size:20px"> Nie znaleniono rekordów. Sprawdź kryteria wyszukiwania </span>
+              </section>
           </section>
         </div> <!-- div search -->
         

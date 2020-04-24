@@ -13,10 +13,18 @@ class Request:
         self.request = None
         self.response = None
 
-    def create_request(self, province, benefit, case):
+    def create_request(self, province, benefit, case, number, location):
+        
         self.reqiest = (self.host + self.endpoint + '/' + self.type + '?'
             + "case=" + str(case) + '&province=' + province
-            + '&benefit=' + benefit + '&format=' + self.format)
+            + '&format=' + self.format)
+        if number:
+            self.reqiest = self.reqiest + '&limit=' + number
+        if benefit:
+            self.reqiest = self.reqiest + '&benefit=' + self.to_ascii_url(benefit)
+        if location:
+            self.reqiest = self.reqiest + '&locality=' + self.to_ascii_url(location)
+        
         # print debug url
         print("request: " + self.reqiest)
 
@@ -46,7 +54,21 @@ class Request:
     def rec_response(self):
         return self.response
 
-
+    def to_ascii_url(self, text):
+        # remove white spaces around 
+        text = text.strip()
+        #remove duplicated spaces
+        text = " ".join(text.split())
+        # replace spaces by '%20'
+        text = text.replace(" ", "%20")
+        # strip right non ascii characters
+        # urllib cant send utf-8 characters and
+        # host doesn't 'understand' encoded ones
+        for c in range(len(text)):
+            if ord(text[c]) >= 128:
+                return text[:c]
+        return text
+    
 # for testing purposes
 if __name__ == "__main__":
     reqiest = Request()

@@ -46,7 +46,6 @@
                  <br>
                  <section v-if="!region_selected">
                    <span class="form-warning" > Wybierz województwo </span>
-                   <br>
                  </section>
               </div> <!-- div input-wrapper -->
               <div class="input-wrapper">
@@ -62,6 +61,7 @@
                 </section>
               </div> <!-- div input-wrapper -->
               <div class="input-wrapper">
+               
                 <select id="select-cases" v-model='form_default.r_number'>
                   <option value="" disabled selected>Wybierz ilość rekordów *</option>
                   <option v-for="number in numbers" v-bind:value="number.value">
@@ -72,9 +72,10 @@
                 <section v-if="!number_selected">
                   <span class="form-warning" > Wybierz ilość rekordów </span>
                 </section>
+         
               </div> <!-- div input-wrapper -->
               <div class="input-wrapper">
-                <input type="text" v-model='form_default.benefit' placeholder="Benefit (np. przychodnia)">
+                <input type="text" v-model='form_default.benefit' placeholder="Benefit (np. fizjoterapia)">
               </div> <!-- div input-wrapper -->
               <div class="input-wrapper">
                 <input type="text" v-model='form_default.r_location' placeholder="Miejscowość (np. Kraków)">
@@ -90,8 +91,11 @@
           </form>
 
           <br>
-          
+          <section v-if="serverError">
+            <span class="form-warning" > Serwer niedostępny. Spróbuj później <br> [{{serverErrorInfo}}] </span>
+          </section>
           <section v-if="r_response" id="table-res">
+            
             <section v-if="data.length != 0">
                 <table>
                     <tr>

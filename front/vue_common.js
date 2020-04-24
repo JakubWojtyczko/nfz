@@ -8,6 +8,8 @@ new Vue({
           case_selected: true,
           number_selected: true,
           r_response: false,
+          serverError: false,
+          serverErrorInfo: null,
           data: null,
           form_default: {
               region: "",
@@ -104,10 +106,16 @@ new Vue({
             if(response.status == "200"){
               self.data = response.data;
               self.r_response = true;
+              self.serverError = false;
               // console.log(this.r_response);
           }
       
-      })
+        }).catch((e) => {
+            console.log(e);
+            self.serverErrorInfo = e;
+            self.serverError = true;
+        }
+      )
     }
   }
 })

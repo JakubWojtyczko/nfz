@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 from request import Request
 from jsonparser import JsonParser
+from database import DataBase
 
 
 app = Flask(__name__, template_folder='../front')
@@ -27,5 +28,30 @@ def index():
     # print(jp.response)
     return jsonify(jp.response)
 
+@app.route('/signin', methods=['GET'])
+def sign_in():
+    login = request.args.get('login')
+    password = request.args.get('password')
+    db = DataBase()
+    # print(login, password)
+   
+    return jsonify([{
+        "ticket": str(db.check_user(login, password))}
+    ])
+
+
+@app.route('/signup', methods=['GET'])
+def sign_up():
+    login = request.args.get('login')
+    password = request.args.get('password')
+    db = DataBase()
+    # print(login, password)
+   
+    return jsonify([{
+        "ticket": str(db.add_user(login, password))}
+    ])
+   
+   
+    
 if __name__ == '__main__':
     app.run(port=8080)

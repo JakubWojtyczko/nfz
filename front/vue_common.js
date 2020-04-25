@@ -3,7 +3,7 @@ Vue.prototype.$http = axios
 
 
 new Vue({
-  el: '#search',
+  el: '#container',
   data() {
     return {
           // host address
@@ -11,6 +11,8 @@ new Vue({
           // host port
           port: '8080',
           
+          login_selected: true,
+          password_selected: true,
           region_selected: true,
           case_selected: true,
           number_selected: true,
@@ -18,6 +20,10 @@ new Vue({
           serverError: false,
           serverErrorInfo: null,
           data: null,
+          signInAction: false,
+          signUpAction: false,
+          login: null,
+          password: null,
           form_default: {
               region: "",
               r_case: "",
@@ -103,24 +109,25 @@ new Vue({
           console.log("case " + this.form_default.r_case);
           console.log("benefit " + this.form_default.benefit);
           
-          this.sendRequest();
-      
-     
-          
-    },
-    sendRequest:function() {
-        console.log('req');
-        var self=this;
-        this.$http.get('http://' + this.host+ ':' +this.port+ '/get', {
-              params: {
+          this.sendRequest({
                 r_region: this.form_default.region,
                 r_case: this.form_default.r_case,
                 r_benefit: this.form_default.benefit,
                 r_number: this.form_default.r_number,
                 r_location: this.form_default.r_location
-              }
+          }, '/get');
+      
+     
+          
+    },
+    sendRequest:function(params, endpoint) {
+        console.log('req');
+        var self=this;
+        this.$http.get('http://' + this.host+ ':' +this.port+ endpoint, {
+              params
           }).then(function(response){
             if(response.status == "200"){
+              console.log(response.data)
               self.data = response.data;
               self.r_response = true;
               self.serverError = false;
@@ -132,8 +139,64 @@ new Vue({
             console.log(e);
             self.serverErrorInfo = e;
             self.serverError = true;
+            self.r_response = false;
         }
       )
+    },
+    signIn: function() {
+        var good=true;
+        if (!this.login) {
+            console.log("no login");
+            good = false;
+            this.login_selected = false;
+        } else {
+            this.login_selected = true;
+        }
+        if (!this.password) {
+            console.log("no password");
+            good = false;
+            this.password_selected = false;
+        } else {
+            this.password_selected = true;
+        }
+        if(!good) {
+            return;
+        }
+        this.sendRequest({
+            login: this.login,
+            password: this.password
+        }, '/signin');
+        if (this.r_response) {
+            this.signInAction = false;
+        }
+        
+    },
+    signUp: function() {
+        var good=true;
+        if (!this.login) {
+            console.log("no login");
+            good = false;
+            this.login_selected = false;
+        } else {
+            this.login_selected = true;
+        }
+        if (!this.password) {
+            console.log("no password");
+            good = false;
+            this.password_selected = false;
+        } else {
+            this.password_selected = true;
+        }
+        if(!good) {
+            return;
+        }
+        this.sendRequest({
+            login: this.login,
+            password: this.password
+        }, '/signup');
+        if (this.r_response) {
+            this.signUpAction = false;
+        }
     }
   }
 })

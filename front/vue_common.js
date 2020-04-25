@@ -1,9 +1,16 @@
 Vue.prototype.$http = axios
 
+
+
 new Vue({
   el: '#search',
   data() {
     return {
+          // host address
+          host: "127.0.0.1",
+          // host port
+          port: '8080',
+          
           region_selected: true,
           case_selected: true,
           number_selected: true,
@@ -95,9 +102,16 @@ new Vue({
           console.log("region " + this.form_default.region);
           console.log("case " + this.form_default.r_case);
           console.log("benefit " + this.form_default.benefit);
-          var self=this;
+          
+          this.sendRequest();
+      
      
-          this.$http.get('http://localhost:8080/get', {
+          
+    },
+    sendRequest:function() {
+        console.log('req');
+        var self=this;
+        this.$http.get('http://' + this.host+ ':' +this.port+ '/get', {
               params: {
                 r_region: this.form_default.region,
                 r_case: this.form_default.r_case,
@@ -110,6 +124,7 @@ new Vue({
               self.data = response.data;
               self.r_response = true;
               self.serverError = false;
+              return;
               // console.log(this.r_response);
           }
       

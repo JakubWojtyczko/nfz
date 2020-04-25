@@ -34,7 +34,7 @@
           <form id="serach-form">
             <div id="input-container">
             <div id="search-title">
-              Wyszukaj klinikę 
+              Wyszukaj klinikę
             </div>
             
               <!-- get region input -->
@@ -108,8 +108,9 @@
           <section v-if="serverError">
             <div class="unavailable-server-massage" > 
                 <i class="fa fa-exclamation-circle" style="font-size:48px;color:red"></i> <br>
-                <b>Serwer niedostępny. Spróbuj później</b> <br> 
-                <b>[{{serverErrorInfo}}]</b> 
+                <b>[{{host}}:{{port}}] nie odpowiada. Spróbuj później</b> <br> 
+                <b>[{{serverErrorInfo}}]</b> <br> <br>
+                <b><span id="close-message-s" v-on:click="serverError = false">[ Zamknij ]</span></b>
             </div>
           </section>
           <section v-if="r_response" id="table-res">

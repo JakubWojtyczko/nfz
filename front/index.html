@@ -54,18 +54,18 @@
       </section> 
       <nav>
         <div id="nav" >
-            <span class="sign-text" v-on:click="signInAction = true" v-if="!isSessionActive">
+            <div class="sign-text" v-on:click="signInAction = true" v-if="!isSessionActive">
               <b>Zaloguj się</b>
-            </span> &nbsp 
-            <span class="sign-text" v-on:click="signUpAction = true" v-if="!isSessionActive">
+            </div> &nbsp 
+            <div class="sign-text" v-on:click="signUpAction = true" v-if="!isSessionActive">
               <b>Zarejestruj się</b>
-            </span> &nbsp 
+            </div> &nbsp 
             <span v-if="isSessionActive">
               <b> Zalogowany jako {{login}} </b>
             </span> &nbsp | 
-            <span class="sign-text" v-on:click="signOut" v-if="isSessionActive">
+            <div class="sign-text" v-on:click="signOut" v-if="isSessionActive">
               <b>Wyloguj się</b>
-            </span> &nbsp 
+            </div> &nbsp 
         </div> <!-- div nav -->
         
       </nav>

@@ -27,31 +27,51 @@ body {
     z-index: 61;
     border-radius: 25px;
     text-align: center;
+    border-bottom: 4px solid #0080ff;
+    border-top: 4px solid #0080ff;
 }
 
 #sign-window input {
-    width: 200px;
+    width: 300px;
     height: 35px;
     margin: 5px 0px;
     font-size: 25px;
     text-align: center;
+    border-radius: 10px;
 }
 
 #sign-window h1 {
-  margin-top: 80px;
-  margin-bottom: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #0080ff;
 }
 
 #sign-window button {
-    width: 200px;
-    height: 35px; 
+    width: 307px;
+    height: 40px; 
     margin: 5px 0px;
-    font-size: 20px;    
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#sign-window button:hover {
+    background-color: #0080ff;
+    color: white;
+    font-weight: bold;
+}
+
+.sign-text {
+    display: inline-block;
+    padding: 10px;
 }
 
 .sign-text:hover {
-    text-decoration: underline;
+    border-radius: 10px;
+    background-color:  #64b1ff;
     cursor: pointer;
+    color: white;
 }
 
 #nav {
@@ -60,6 +80,9 @@ body {
     font-size: 20px;
     text-align: right;
     color: #0080ff;
+    background-color: #99ccff;
+    border-bottom: 1px solid #66b3ff;
+    padding: 7px 0;
 }
 
 #search {
@@ -110,6 +133,7 @@ body {
     cursor: pointer;
     height: 36px;
     width: 304px;
+    border-radius: 10px;
 }
 
 #search input {
@@ -118,6 +142,11 @@ body {
     text-align: center;
     font-size: 20px;
     margin: 5px;
+    border-radius: 10px;
+}
+
+#search select {
+    border-radius: 10px;
 }
 
 .no-input-warning {

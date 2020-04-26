@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response, jsonify, request
+from flask import Flask, render_template, Response, jsonify, request, send_from_directory
 import pathlib
 from os import path
 from flask_cors import CORS
@@ -11,8 +11,17 @@ from database import DataBase
 app = Flask(__name__, template_folder='../front')
 CORS(app)
 
-@app.route('/get', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
+    return render_template("index.html")
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('../front', filename)
+
+    
+@app.route('/get', methods=['GET', 'POST'])
+def get():
     # print(request.args)
     region = request.args.get('r_region')
     case = request.args.get('r_case')

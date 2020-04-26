@@ -160,7 +160,7 @@ new Vue({
             this.login_selected = true;
         }
         if (!this.password) {
-            // console.log("no password");
+            console.log("no password");
             good = false;
             this.password_selected = false;
         } else {

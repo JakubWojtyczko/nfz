@@ -290,7 +290,12 @@ new Vue({
     isCharAllowed(str) {
         // letters and numbers are allowed.
         // return false otherwise
-        return str.match(/[a-zA-Z0-9]/i);
+        for (var i=0; i<str.length; ++i) {
+            if (!str.charAt(i).match(/[a-zA-Z0-9]/i)) {
+                return false;
+            }
+        }
+        return true;
     },
     createCookieSession: function(key, val) {
         var d = new Date();

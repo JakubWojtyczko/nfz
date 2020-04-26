@@ -14,7 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- productions -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
+    <!-- use Ajax for http requests -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+    <!-- Allow using cookies -->
+    <script src="https://unpkg.com/vue-cookies@1.7.0/vue-cookies.js"></script>
     
   </head>
 
@@ -36,8 +39,8 @@
             </section>
             <input v-model="login" placeholder="Login"> <br>
             <input type="password" v-model="password" placeholder="Hasło"> <br>
-            <span class="form-warning" v-if="!login_selected || !password_selected"> 
-              Podaj dane logowania  <br>
+            <span v-if="loginWindowError" class="form-warning">
+                {{loginWindowError}}
             </span>
             <section v-if="signInAction">
               <button v-on:click="signIn"> Zaloguj</button> <br>
@@ -45,19 +48,26 @@
             <section v-if="signUpAction">
               <button v-on:click="signUp"> Zarejestruj</button> <br>
             </section>
-            <button v-on:click="signUpAction = signInAction = false"> Anuluj</button> <br>
+            <button v-on:click="discardLoginData"> Anuluj</button> <br>
            
         </div>
       </section> 
       <nav>
-        <div id="nav">
-            <span class="sign-text" v-on:click="signInAction = true">
+        <div id="nav" >
+            <span class="sign-text" v-on:click="signInAction = true" v-if="!isSessionActive">
               <b>Zaloguj się</b>
-            </span> &nbsp
-            <span class="sign-text" v-on:click="signUpAction = true">
+            </span> &nbsp 
+            <span class="sign-text" v-on:click="signUpAction = true" v-if="!isSessionActive">
               <b>Zarejestruj się</b>
             </span> &nbsp 
+            <span v-if="isSessionActive">
+              <b> Zalogowany jako {{login}} </b>
+            </span> &nbsp | 
+            <span class="sign-text" v-on:click="signOut" v-if="isSessionActive">
+              <b>Wyloguj się</b>
+            </span> &nbsp 
         </div> <!-- div nav -->
+        
       </nav>
       <header>
         <div id="logo">
@@ -131,7 +141,7 @@
                 <section v-if="!case_selected || !number_selected || !region_selected">
                   <br>
                   <span class="form-warning"> 
-                    Pola oznaczone (*) są wymagane 
+                    Pola oznaczone (*) są wymagane  
                   </span>
                 </section>
               </div> <!-- div input-wrapper -->
@@ -145,7 +155,7 @@
           <section v-if="serverError">
             <div class="unavailable-server-massage" > 
                 <i class="fa fa-exclamation-circle" style="font-size:48px;color:red"></i> <br>
-                <b>[{{host}}:{{port}}] nie odpowiada. Spróbuj później</b> <br> 
+                <b>Wystąpił błąd. Spróbuj później</b> <br> 
                 <b>[{{serverErrorInfo}}]</b> <br> <br>
                 <b><span id="close-message-s" v-on:click="serverError = false">[ Zamknij ]</span></b>
             </div>
@@ -183,6 +193,7 @@
     <script src="vue_common.js"> </script>
     <footer>
         <div class="footer">
+            Ta strona używa plików Kukiz <br>
             Wszelkie prawa zastrzeżone &copy 2020
         </div>
     </footer>

@@ -1,7 +1,5 @@
 Vue.prototype.$http = axios
 
-
-
 new Vue({
   el: '#container',
   data() {
@@ -13,10 +11,14 @@ new Vue({
           
           login_selected: true,
           password_selected: true,
+          isSessionActive: false,
+          loginWindowError: null,
+          sessionToken: null,
           region_selected: true,
           case_selected: true,
           number_selected: true,
           r_response: false,
+          logResponse: false,
           serverError: false,
           serverErrorInfo: null,
           data: null,
@@ -115,12 +117,12 @@ new Vue({
                 r_benefit: this.form_default.benefit,
                 r_number: this.form_default.r_number,
                 r_location: this.form_default.r_location
-          }, '/get');
+          }, '/get', true);
       
      
           
     },
-    sendRequest:function(params, endpoint) {
+    sendRequest:function(params, endpoint, p) {
         console.log('req');
         var self=this;
         this.$http.get('http://' + this.host+ ':' +this.port+ endpoint, {
@@ -128,11 +130,15 @@ new Vue({
           }).then(function(response){
             if(response.status == "200"){
               console.log(response.data)
-              self.data = response.data;
-              self.r_response = true;
+              //self.data = response.data;
+              if (p) {
+                  self.data = response.data;
+                  self.r_response = true;
+              } else {
+                  self.sessionToken = response.data[0]["ticket"];
+                  self.logResponse = true;
+              }
               self.serverError = false;
-              return;
-              // console.log(this.r_response);
           }
       
         }).catch((e) => {
@@ -140,6 +146,7 @@ new Vue({
             self.serverErrorInfo = e;
             self.serverError = true;
             self.r_response = false;
+            self.logResponse = false;
         }
       )
     },
@@ -160,16 +167,40 @@ new Vue({
             this.password_selected = true;
         }
         if(!good) {
+            this.loginWindowError = "Podaj dane logowania";
             return;
         }
-        this.sendRequest({
-            login: this.login,
-            password: this.password
-        }, '/signin');
-        if (this.r_response) {
-            this.signInAction = false;
-        }
+        var self=this;
         
+        this.$http.get('http://' + this.host+ ':' +this.port+ '/signin', {
+            params: {
+                'login': self.login, 
+                'password': self.password
+                }
+        }).then(function(response){
+            if(response.status == "200"){
+                self.sessionToken = response.data[0]["ticket"];
+                console.log(self.sessionToken)
+                self.serverError = false;
+                if (parseInt(self.sessionToken, 10) > 0) {
+                    console.log('logged in')
+                    self.signInAction = false;
+                    self.isSessionActive = true;
+                    self.$cookies.set('tokenIds', self.sessionToken);
+                    console.log(self.$cookies.isKey('tokenIds'));
+                } else {
+                    self.loginWindowError = "Niepoprawne dane";
+                }
+           }
+        }).catch((e) => {
+            console.log(e);
+            self.serverErrorInfo = e;
+            self.serverError = true;
+            self.r_response = false;
+            self.logResponse = false;
+            self.discardLoginData();
+         }
+        )
     },
     signUp: function() {
         var good=true;
@@ -177,26 +208,89 @@ new Vue({
             console.log("no login");
             good = false;
             this.login_selected = false;
+            this.loginWindowError = "Wypełnij wszystkie pola";
         } else {
             this.login_selected = true;
+            if (this.login.length < 5) {
+                good = false;
+                this.loginWindowError = "Login musi mieć o najmniej 5 znaków";
+            } else if (!this.isCharAllowed(this.login)) {
+                good = false;
+                this.loginWindowError = "Dozwolone tylko litery i cyfry";
+            }
         }
         if (!this.password) {
             console.log("no password");
             good = false;
+            this.loginWindowError = "Wypełnij wszystkie pola";
             this.password_selected = false;
         } else {
             this.password_selected = true;
-        }
+            if (this.password.length < 5) {
+                good = false;
+                this.loginWindowError = "Hasło musi mieć o najmniej 5 znaków";
+            } else if (!this.isCharAllowed(this.password)) {
+                good = false;
+                this.loginWindowError = "Dozwolone tylko litery i cyfry";
+            }
+        }    
         if(!good) {
             return;
         }
-        this.sendRequest({
-            login: this.login,
-            password: this.password
-        }, '/signup');
-        if (this.r_response) {
-            this.signUpAction = false;
+        var self = this;
+        this.$http.get('http://' + this.host+ ':' +this.port+ '/signup', {
+            params: {
+                'login': self.login, 
+                'password': self.password
+                }
+        }).then(function(response){
+            if(response.status == "200"){
+                self.sessionToken = response.data[0]["ticket"];
+                console.log(self.sessionToken)
+                self.serverError = false;
+                if (parseInt(self.sessionToken, 10) > 0) {
+                    self.signUpAction = false;
+                    self.isSessionActive = true;
+              
+                } else {
+                    console.log('xd')
+                    self.loginWindowError = "Podany login już istnieje, wybierz inny";
+                }
+           }
+        }).catch((e) => {
+            console.log(e);
+            self.serverErrorInfo = e;
+            self.serverError = true;
+            self.r_response = false;
+            self.logResponse = false;
+            self.discardLoginData();
+         }
+        )
+    },
+    discardLoginData() {
+        this.signUpAction = false;
+        this.signInAction = false;
+        this.login = "";
+        this.password = "";
+        this.loginWindowError = null;
+    },
+    signOut() {
+        this.sessionToken = null;
+        this.isSessionActive = false;
+        this.discardLoginData();
+    },
+    isCharAllowed(str) {
+        for (var i = 0; i < str.length; i++) {
+            if (!str.match(/[a-zA-Z0-9]/i)) {
+                return false;
+            }
         }
+        return true;
     }
-  }
+    },
+    created() {
+        this.$cookies.set('tokenIds', '11');
+        console.log(this.$cookies.isKey('tokenIds'))
+    }
+    
 })

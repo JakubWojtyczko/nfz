@@ -82,21 +82,21 @@ new Vue({
           // first validate data
           var good = true
           if (!this.form_default.region) {
-              console.log("no region");
+              // console.log("no region");
               good = false;
               this.region_selected = false;
           } else {
               this.region_selected = true;
           }
           if (!this.form_default.r_case) {
-              console.log("no case");
+              // console.log("no case");
               good = false;
               this.case_selected = false;
           } else {
               this.case_selected = true;
           }
           if (!this.form_default.r_number) {
-              console.log("no number");
+              // console.log("no number");
               good = false;
               this.number_selected = false;
           } else {
@@ -107,9 +107,9 @@ new Vue({
               return;
           }
           // debug - print selected fields
-          console.log("region " + this.form_default.region);
-          console.log("case " + this.form_default.r_case);
-          console.log("benefit " + this.form_default.benefit);
+          // console.log("region " + this.form_default.region);
+          // console.log("case " + this.form_default.r_case);
+          // console.log("benefit " + this.form_default.benefit);
           
           this.sendRequest({
                 r_region: this.form_default.region,
@@ -123,13 +123,13 @@ new Vue({
           
     },
     sendRequest:function(params, endpoint, p) {
-        console.log('req');
+        // console.log('req');
         var self=this;
         this.$http.get('http://' + this.host+ ':' +this.port+ endpoint, {
               params
           }).then(function(response){
             if(response.status == "200"){
-              console.log(response.data)
+              // console.log(response.data)
               //self.data = response.data;
               if (p) {
                   self.data = response.data;
@@ -153,14 +153,14 @@ new Vue({
     signIn: function() {
         var good=true;
         if (!this.login) {
-            console.log("no login");
+            // console.log("no login");
             good = false;
             this.login_selected = false;
         } else {
             this.login_selected = true;
         }
         if (!this.password) {
-            console.log("no password");
+            // console.log("no password");
             good = false;
             this.password_selected = false;
         } else {
@@ -180,14 +180,14 @@ new Vue({
         }).then(function(response){
             if(response.status == "200"){
                 self.sessionToken = response.data[0]["ticket"];
-                console.log(self.sessionToken)
+                // console.log(self.sessionToken)
                 self.serverError = false;
                 if (parseInt(self.sessionToken, 10) > 0) {
-                    console.log('logged in')
+                    // console.log('logged in')
                     self.signInAction = false;
                     self.isSessionActive = true;
-                    self.$cookies.set('tokenIds', self.sessionToken);
-                    console.log(self.$cookies.isKey('tokenIds'));
+                    self.createCookieSession('tokenIds', self.sessionToken);
+                    self.createCookieSession('login', self.login);
                 } else {
                     self.loginWindowError = "Niepoprawne dane";
                 }
@@ -205,7 +205,7 @@ new Vue({
     signUp: function() {
         var good=true;
         if (!this.login) {
-            console.log("no login");
+            // console.log("no login");
             good = false;
             this.login_selected = false;
             this.loginWindowError = "Wypełnij wszystkie pola";
@@ -220,7 +220,7 @@ new Vue({
             }
         }
         if (!this.password) {
-            console.log("no password");
+            // console.log("no password");
             good = false;
             this.loginWindowError = "Wypełnij wszystkie pola";
             this.password_selected = false;
@@ -246,14 +246,17 @@ new Vue({
         }).then(function(response){
             if(response.status == "200"){
                 self.sessionToken = response.data[0]["ticket"];
-                console.log(self.sessionToken)
+                // console.log(self.sessionToken)
                 self.serverError = false;
                 if (parseInt(self.sessionToken, 10) > 0) {
+                    // server returns positive number when user is added
+                    // -1 when the login exists in the DB
                     self.signUpAction = false;
                     self.isSessionActive = true;
+                    self.createCookieSession('tokenIds', self.sessionToken);
+                    self.createCookieSession('login', self.login);
               
                 } else {
-                    console.log('xd')
                     self.loginWindowError = "Podany login już istnieje, wybierz inny";
                 }
            }
@@ -268,6 +271,7 @@ new Vue({
         )
     },
     discardLoginData() {
+        // flush login-form data
         this.signUpAction = false;
         this.signInAction = false;
         this.login = "";
@@ -276,21 +280,43 @@ new Vue({
     },
     signOut() {
         this.sessionToken = null;
+        // disactive the session
         this.isSessionActive = false;
-        this.discardLoginData();
+        // remove cookies
+        this.removeCookiesSesstion();
+        // remove forma data
+        this.discardLoginData();        
     },
     isCharAllowed(str) {
-        for (var i = 0; i < str.length; i++) {
-            if (!str.match(/[a-zA-Z0-9]/i)) {
-                return false;
-            }
-        }
-        return true;
-    }
+        // letters and numbers are allowed.
+        // return false otherwise
+        return str.match(/[a-zA-Z0-9]/i);
     },
-    created() {
-        this.$cookies.set('tokenIds', '11');
-        console.log(this.$cookies.isKey('tokenIds'))
+    createCookieSession: function(key, val) {
+        var d = new Date();
+        // cookie expires in 24 H
+        let oneDayInMs = 24*60*60*1000;
+        d.setTime(d.getTime() + (oneDayInMs));
+        // convert to string in UTC format
+        var expires = "expires="+ d.toUTCString();
+        // console.log('session expiration: ' + expires);
+        this.$cookies.set(key, val, d);
+    },
+    removeCookiesSesstion: function() {
+        this.$cookies.remove('tokenIds');
+        this.$cookies.remove('login');
     }
-    
+  },
+  created() {
+      // debug display all cookies on page load
+      // console.log(this.$cookies.get('tokenIds'))
+      // console.log(this.$cookies.get('login'))
+      if (this.$cookies.get('tokenIds') && this.$cookies.get('login')) {
+          // user is already signed-in
+          // bring back session variables
+          this.isSessionActive = true;
+          this.sessionToken = this.$cookies.get('tokenIds');
+          this.login = this.$cookies.get('login');
+      }
+  }
 })

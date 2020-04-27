@@ -28,6 +28,12 @@ class Request:
         # print debug url
         print("request: " + self.reqiest)
 
+    def create_fav_request(self, id_nfz):
+    
+        self.reqiest = (self.host + self.endpoint + '/' + self.type + '/' + id_nfz)
+        print("request: " + self.reqiest)
+        
+        
     def send_request(self):
         if self.reqiest is not None:
             try:

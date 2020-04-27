@@ -31,3 +31,44 @@ class DataBase:
             new_num = max_num + 1
             file.writelines(["{} {}\t{}\n".format(new_num, login, password)])
         return new_num
+
+    def add_to_fav(self, token, id):
+        with open('../fav_db.txt', 'a') as file:
+            file.writelines(["{}\t{}\n".format(token, id)])
+
+    def remove_fav(self, token, id):
+        if not os.path.isfile('../fav_db.txt'):
+            return
+        lines = []
+        with open('../fav_db.txt') as file:
+            for line in file.readlines():
+                print(line.split())
+                old_token, old_id = line.split()
+                if old_token == token and old_id == id:
+                    continue
+                else:
+                    lines.append(line)
+        print(lines)
+        with open('../fav_db.txt', 'w') as file:
+            file.writelines(lines)
+
+    def is_fav(self, token, id):
+        if not os.path.isfile('../fav_db.txt'):
+            return
+        with open('../fav_db.txt') as file:
+            for line in file.readlines():
+                old_token, old_id = line.split()
+                if old_token == token and old_id == id:
+                    return True
+        return False
+
+    def get_fav_id(self, token):
+        if not os.path.isfile('../fav_db.txt'):
+            return []
+        fav_list = []
+        with open('../fav_db.txt') as file:
+            for line in file.readlines():
+                old_token, old_id = line.split()
+                if old_token == token:
+                    fav_list.append(old_id)  
+        return fav_list

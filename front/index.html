@@ -65,6 +65,9 @@
             <span v-if="isSessionActive">
               <b> Zalogowany jako {% raw %}{{login}}{% endraw %} </b>
             </span> &nbsp | 
+            <div class="sign-text" v-on:click="displayFav" v-if="isSessionActive">
+              <b>Ulubione</b>
+            </div> &nbsp 
             <div class="sign-text" v-on:click="signOut" v-if="isSessionActive">
               <b>Wyloguj się</b>
             </div> &nbsp 
@@ -171,12 +174,21 @@
                       <td> <b>Miasto</b>  </td> 
                       <td> <b>Ulica</b>   </td> 
                       <td> <b>Telefon</b> </td>
+                      <td v-if="isSessionActive"> <b> Ulubione </b> </td>
                     </tr>
                     <tr v-for="row in data">
                       <td> {% raw %}{{row.benefit}}{% endraw %}  </td> 
                       <td> {% raw %}{{row.locality}}{% endraw %} </td> 
                       <td> {% raw %}{{row.address}}{% endraw %}  </td> 
                       <td> {% raw %}{{row.phone}}{% endraw %}    </td>
+                      <td v-if="isSessionActive">
+                          <section v-if="!row.is_fav">
+                            <b> <i @click="addToFavourites(row.id)" class="fa fa-star-o"></i> </b> 
+                          </section>
+                          <section v-if="row.is_fav">
+                            <b> <i @click="deleteFromFavourites(row.id)" style="color:blue" class="fa fa-star"></i> </b> 
+                          </section>
+                      </td>
                     </tr>
                 </table>
               </section>

@@ -116,7 +116,8 @@ new Vue({
                 r_case: this.form_default.r_case,
                 r_benefit: this.form_default.benefit,
                 r_number: this.form_default.r_number,
-                r_location: this.form_default.r_location
+                r_location: this.form_default.r_location,
+                r_token: this.sessionToken,
           }, '/get', true);
       
      
@@ -270,6 +271,46 @@ new Vue({
          }
         )
     },
+    addToFavourites(id) {
+        var self = this;
+        this.$http.get('http://' + this.host+ ':' +this.port+ '/addfav', {
+            params: {
+                'tokenId': self.sessionToken, 
+                'queueId': id
+                }
+        }).then(function(response){
+            if(response.status == "200"){
+                for (i=0; i<self.data.length; ++i) {
+                    if (self.data[i].id == id) {
+                        self.data[i].is_fav = true;
+                    }
+                }   
+           }
+        }).catch((e) => {
+            return;
+         }
+        )
+    },
+    deleteFromFavourites(id) {
+        var self = this;
+        this.$http.get('http://' + this.host+ ':' +this.port+ '/removefav', {
+            params: {
+                'tokenId': self.sessionToken, 
+                'queueId': id
+                }
+        }).then(function(response){
+            if(response.status == "200"){
+                for (i=0; i<self.data.length; ++i) {
+                    if (self.data[i].id == id) {
+                        self.data[i].is_fav = false;
+                    }
+                }   
+           }
+        }).catch((e) => {
+            return;
+         }
+        )
+    },
     discardLoginData() {
         // flush login-form data
         this.signUpAction = false;
@@ -277,6 +318,22 @@ new Vue({
         this.login = "";
         this.password = "";
         this.loginWindowError = null;
+    },
+    displayFav() {
+        var self = this;
+        this.$http.get('http://' + this.host+ ':' +this.port+ '/displayfav', {
+            params: {
+                'tokenId': self.sessionToken,
+                }
+        }).then(function(response){
+            if(response.status == "200"){
+                self.data = response.data;
+                self.r_response = true;
+           }
+        }).catch((e) => {
+            return;
+         }
+        )
     },
     signOut() {
         this.sessionToken = null;

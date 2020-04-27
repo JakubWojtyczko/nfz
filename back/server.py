@@ -28,14 +28,31 @@ def get():
     benefit = request.args.get('r_benefit')
     number = request.args.get('r_number')
     location = request.args.get('r_location')
+    token = request.args.get('r_token')
+    # print('*****', token)
     req = Request()
     req.create_request(region, benefit, case, number, location)
     req.send_request()
     jp = JsonParser(req.rec_response())
-    jp.parse()
+    jp.parse(token)
     status_code = Response(status=200)
     # print(jp.response)
     return jsonify(jp.response)
+
+@app.route('/displayfav', methods=['GET', 'POST'])
+def displayfav():
+    token = request.args.get('tokenId')
+    req = Request()
+    db = DataBase()
+    id_list = db.get_fav_id(token)
+    response_dict = []
+    for id in id_list:
+        req.create_fav_request(id)
+        req.send_request()
+        jp = JsonParser(req.rec_response())
+        jp.parse_id_response()
+        response_dict.extend(jp.response)
+    return jsonify(response_dict)
 
 @app.route('/signin', methods=['GET'])
 def sign_in():
@@ -60,7 +77,26 @@ def sign_up():
         "ticket": str(db.add_user(login, password))}
     ])
    
-   
-    
+
+@app.route('/addfav', methods=['POST', 'GET'])
+def add_fav():
+     token = request.args.get('tokenId')
+     id = request.args.get('queueId')
+     # print(token, id)
+     db = DataBase()
+     db.add_to_fav(token, id)
+     return "ok", 200
+
+
+@app.route('/removefav', methods=['POST', 'GET'])
+def remove_fav():
+     token = request.args.get('tokenId')
+     id = request.args.get('queueId')
+     # print(token, id)
+     db = DataBase()
+     db.remove_fav(token, id)
+     return "ok", 200
+
+
 if __name__ == '__main__':
     app.run(port=8080)

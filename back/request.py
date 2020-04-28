@@ -44,8 +44,8 @@ class Request:
                 raise 
             except urllib.error.HTTPError as error:
                 # cannot connect to the server
-                print('ERROR: ' + str(error))
-                raise ConnectionRefusedError
+                print(str(error))
+                raise
             except Exception as e:
                 note = """
                 !! Note: `urllib` requires ssl module for handling HTTPS requests.     !!

@@ -12,7 +12,7 @@ class JsonParser:
     def parse(self, token):
         self.parsed = json.loads(self.data)
         # print formatted received json
-        print(json.dumps(self.parsed, indent=4, sort_keys=True))
+        # print(json.dumps(self.parsed, indent=4, sort_keys=True))
         db = DataBase()
         self.institutions = []
         for row in self.parsed["data"]:

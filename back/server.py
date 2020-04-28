@@ -2,6 +2,7 @@ from flask import Flask, render_template, Response, jsonify, request, send_from_
 import pathlib
 from os import path
 from flask_cors import CORS
+from urllib.error import HTTPError
 
 from request import Request
 from jsonparser import JsonParser
@@ -11,15 +12,17 @@ from database import DataBase
 app = Flask(__name__, template_folder='../front')
 CORS(app)
 
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template("index.html")
+
 
 @app.route('/<path:filename>')
 def serve_static(filename):
     return send_from_directory('../front', filename)
 
-    
+
 @app.route('/get', methods=['GET', 'POST'])
 def get():
     # print(request.args)
@@ -39,6 +42,7 @@ def get():
     # print(jp.response)
     return jsonify(jp.response)
 
+
 @app.route('/displayfav', methods=['GET', 'POST'])
 def displayfav():
     token = request.args.get('tokenId')
@@ -48,11 +52,20 @@ def displayfav():
     response_dict = []
     for id in id_list:
         req.create_fav_request(id)
-        req.send_request()
+        try:
+            req.send_request()
+        except HTTPError:
+            # it might happen that queue id already
+            # doesn't exist. Skip this record and 
+            # remove it from the database
+            db.remove_fav(token, id)
+            # skip processing
+            continue
         jp = JsonParser(req.rec_response())
         jp.parse_id_response()
         response_dict.extend(jp.response)
     return jsonify(response_dict)
+
 
 @app.route('/signin', methods=['GET'])
 def sign_in():

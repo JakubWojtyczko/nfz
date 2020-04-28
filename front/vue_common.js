@@ -14,6 +14,7 @@ new Vue({
           isSessionActive: false,
           loginWindowError: null,
           sessionToken: null,
+          isFavTable: false,
           region_selected: true,
           case_selected: true,
           number_selected: true,
@@ -135,6 +136,7 @@ new Vue({
               if (p) {
                   self.data = response.data;
                   self.r_response = true;
+                  self.isFavTable = true;
               } else {
                   self.sessionToken = response.data[0]["ticket"];
                   self.logResponse = true;
@@ -326,9 +328,10 @@ new Vue({
                 'tokenId': self.sessionToken,
                 }
         }).then(function(response){
-            if(response.status == "200"){
+            if(response.status == "200") {
                 self.data = response.data;
                 self.r_response = true;
+                self.isFavTable = true;
            }
         }).catch((e) => {
             return;

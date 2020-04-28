@@ -193,9 +193,16 @@
                 </table>
               </section>
               <section v-if="data.length == 0">
-                <span style="font-size:20px"> 
-                  Nie znaleniono rekordów. Sprawdź kryteria wyszukiwania 
-                </span>
+                <section v-if="isFavTable == false">
+                  <span style="font-size:20px"> 
+                    Nie znaleniono rekordów. Sprawdź kryteria wyszukiwania 
+                  </span>
+                </section  v-if="isFavTable == true">
+                    Nie masz ulubionych miejsc. Aby dodać ulubione kliknij 
+                    <i @click="addToFavourites(row.id)" class="fa fa-star-o"></i>
+                    przy wybranym rekordzie
+                <section>
+                </section>
               </section>
               <br><br><br>
           </section>

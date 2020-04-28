@@ -42,13 +42,13 @@ class DataBase:
         lines = []
         with open('../fav_db.txt') as file:
             for line in file.readlines():
-                print(line.split())
+                # print(line.split())
                 old_token, old_id = line.split()
                 if old_token == token and old_id == id:
                     continue
                 else:
                     lines.append(line)
-        print(lines)
+        # print(lines)
         with open('../fav_db.txt', 'w') as file:
             file.writelines(lines)
 

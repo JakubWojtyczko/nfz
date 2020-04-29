@@ -129,6 +129,7 @@ new Vue({
         // console.log('req');
         var self=this;
         this.consoleMessage = "Czekaj...";
+        this.serverError = false;
         this.$http.get('http://' + this.host+ ':' +this.port+ endpoint, {
               params
           }).then(function(response){
@@ -332,6 +333,7 @@ new Vue({
     displayFav() {
         var self = this;
         this.consoleMessage = "Czekaj...";
+        this.serverError = false;
         this.$http.get('http://' + this.host+ ':' +this.port+ '/displayfav', {
             params: {
                 'tokenId': self.sessionToken,

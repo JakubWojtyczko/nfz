@@ -217,12 +217,14 @@ body {
 
 .console-massage {
     width: 100%;
-    padding: 15px 0;
+    padding: 16px 0;
     background-color: #10122f;
     color: white;
     margin: 0 auto;
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
+    animation: spin 0.05s linear;
+    transform-origin: 0% 0%;
 }
 
 .footer {
@@ -239,4 +241,10 @@ body {
 
 #close-message-s:hover {
     cursor: pointer;
+}
+
+
+@keyframes spin {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
 }

@@ -248,3 +248,12 @@ body {
   0% { transform: scaleY(0); }
   100% { transform: scaleY(1); }
 }
+
+#table-res i {
+    color: #8a8383;
+}
+
+#table-res i:hover {
+    cursor: pointer;
+    color: white;
+}

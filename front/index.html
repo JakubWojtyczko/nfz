@@ -73,20 +73,22 @@
         </div> <!-- div nav -->
       </nav>
       
-      <section v-if="serverError">
-        <div class="unavailable-server-massage" > 
-          <i class="fa fa-exclamation-circle" style="font-size:25px;color:#b30000"></i> &nbsp
-          <b>Wystąpił błąd. Spróbuj później. </b> &nbsp
-          <b><span id="close-message-s" v-on:click="serverError = false"> [ OK ]</span></b>
-        </div>
-      </section>
-
-      <section v-if="consoleMessage">
-        <div class="console-massage">
-         </b> {% raw %}{{consoleMessage}}{% endraw %} </b>
-        </div>
-      </section>
-
+      <div style="min-height:55px;width:100%">
+        <section v-if="serverError">
+          <div class="unavailable-server-massage" > 
+            <i class="fa fa-exclamation-circle" style="font-size:25px;color:#b30000"></i> &nbsp
+            <b>Wystąpił błąd. Spróbuj później. </b> &nbsp
+            <b><span id="close-message-s" v-on:click="serverError = false"> [ OK ]</span></b>
+          </div>
+        </section>
+        
+        <section v-if="consoleMessage">
+          <div class="console-massage">
+           </b> {% raw %}{{consoleMessage}}{% endraw %} </b>
+          </div>
+        </section>
+      </div>
+      
       <header>
         <div id="logo">
           <img src="../img/logo.png" style="border-radius: 10px;">
@@ -105,7 +107,7 @@
 
               <div class="input-wrapper">
                 <select v-model='form_default.region' :class="applyInputStyle(region_selected)">
-                  <option value="" disabled selected>Wybierz województwo *</option>
+                  <option value="" disabled selected>Województwo *</option>
                   <option v-for="region in regions" v-bind:value="region.value">
                     {% raw %}{{ region.text }}{% endraw %}
                   </option>
@@ -117,7 +119,7 @@
 
               <div class="input-wrapper">
                 <select id="select-cases" v-model='form_default.r_case' :class="applyInputStyle(case_selected)">
-                  <option value="" disabled selected>Wybierz przypadek *</option>
+                  <option value="" disabled selected>Przypadek *</option>
                   <option v-for="case_ in r_cases" v-bind:value="case_.value">
                     {% raw %}{{ case_.text }}{% endraw %}
                   </option>
@@ -129,7 +131,7 @@
               
               <div class="input-wrapper">
                 <select v-model='form_default.r_number' :class="applyInputStyle(number_selected)">
-                  <option value="" disabled selected>Wybierz ilość rekordów *</option>
+                  <option value="" disabled selected>Limit rekordów *</option>
                   <option v-for="number in numbers" v-bind:value="number.value">
                     {% raw %}{{ number.text }}{% endraw %}
                   </option>

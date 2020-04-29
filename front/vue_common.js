@@ -198,6 +198,11 @@ new Vue({
                     self.createCookieSession('login', self.login);
                     self.consoleMessage = "Logowanie pomyślne";
                     setTimeout(self.hideConsole, 2000);
+                    // resend request is response is displayed
+                    // it prevent double fav adding TODO
+                    // if (this.r_response) {
+                    //     self.posts();
+                    // }
                 } else {
                     self.loginWindowError = "Niepoprawne dane";
                 }
@@ -362,7 +367,10 @@ new Vue({
         // remove forma data
         this.discardLoginData();
         this.consoleMessage = "Pomyślnie wylogowano";
-        setTimeout(this.hideConsole, 2000);        
+        // clear received data
+        this.r_response = false;
+        this.data = null;
+        setTimeout(this.hideConsole, 2000);
     },
     isCharAllowed(str) {
         // letters and numbers are allowed.

@@ -136,7 +136,7 @@ new Vue({
               if (p) {
                   self.data = response.data;
                   self.r_response = true;
-                  self.isFavTable = true;
+                  self.isFavTable = false;
               } else {
                   self.sessionToken = response.data[0]["ticket"];
                   self.logResponse = true;

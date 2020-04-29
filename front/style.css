@@ -1,6 +1,7 @@
 body {
     margin: 0;
-    background-color: #cce6ff;
+    background-color: #1a3854;
+    color: white;
 }
 
 #shader {
@@ -15,7 +16,7 @@ body {
 }
 
 #sign-window {
-    background-color: white;
+    background-color: #1a3854;
     width: 600px;
     height: 400px;
     position: absolute;
@@ -27,8 +28,8 @@ body {
     z-index: 61;
     border-radius: 25px;
     text-align: center;
-    border-bottom: 4px solid #0080ff;
-    border-top: 4px solid #0080ff;
+    border-bottom: 4px solid #0d243c;
+    border-top: 4px solid #0d243c;
 }
 
 #sign-window input {
@@ -44,7 +45,7 @@ body {
     margin-top: 50px;
     margin-bottom: 20px;
     font-size: 40px;
-    color: #0080ff;
+    color: white;
 }
 
 #sign-window button {
@@ -57,7 +58,8 @@ body {
 }
 
 #sign-window button:hover {
-    background-color: #0080ff;
+    border-color: #1a3854;
+    background-color: #1a3854;
     color: white;
     font-weight: bold;
 }
@@ -69,7 +71,7 @@ body {
 
 .sign-text:hover {
     border-radius: 10px;
-    background-color:  #64b1ff;
+    background-color: #1a3854;
     cursor: pointer;
     color: white;
 }
@@ -79,8 +81,8 @@ body {
     width: 100%;
     font-size: 20px;
     text-align: right;
-    color: #0080ff;
-    background-color: #99ccff;
+    color: white;
+    background-color: #0d243c;
     border-bottom: 1px solid #66b3ff;
     padding: 7px 0;
 }
@@ -95,7 +97,7 @@ body {
     max-width: 60%;
     margin: 0 auto;
     text-align:center;
-    background-color: white;
+    background-color: #0d243c;
     border-radius: 10px;
     min-width: 315px;
     max-width: 950px;
@@ -178,8 +180,8 @@ body {
 
 #table-res table td {
     max-width: 250px;
-    background-color: white;
-    padding: 5px;
+    background-color: #0d243c;
+    padding: 10px;
 }
 
 .unavailable-server-massage {
@@ -197,7 +199,7 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #b3d9ff;
+    background-color: #0d243c;
     color: white;
     padding: 10px 0;
     font-size: 15px;

@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html>
-  
+
   <head>
     <title>NFZ - Czas leczy rany</title>
     <meta charset="utf-8" >
@@ -18,96 +18,94 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
     <!-- Allow using cookies -->
     <script src="https://unpkg.com/vue-cookies@1.7.0/vue-cookies.js"></script>
-    
   </head>
 
 
   <body>
-
     <div id="container">
     
       <section v-if="signInAction || signUpAction">
         <div id="shader">
         </div>
         <div id="sign-window">
-            <form>
-              <!-- login -->
-              <section v-if="signInAction">
-                <h1> Zaloguj się</h1> <br>
-              </section>
-              <section v-if="signUpAction">
-                <h1> Zarejestruj się</h1> <br>
-              </section>
-              <input v-model="login" placeholder="Login"> <br>
-              <input type="password" v-model="password" placeholder="Hasło"> <br>
-              <span v-if="loginWindowError" class="form-warning">
-                  {% raw %}{{loginWindowError}}{% endraw %}
-              </span>
-              <section v-if="signInAction">
-                <button v-on:click.prevent="signIn" id="sign-in-button"> Zaloguj</button> <br>
-              </section>
-              <section v-if="signUpAction">
-                <button v-on:click.prevent="signUp"> Zarejestruj</button> <br>
-              </section>
-            </form>
-            <button v-on:click.prevent="discardLoginData"> Anuluj</button> <br>
-           
-        </div>
-      </section> 
+          <form>
+            <!-- login -->
+            <section v-if="signInAction">
+              <h1> Zaloguj się</h1> <br>
+            </section>
+            <section v-if="signUpAction">
+              <h1> Zarejestruj się</h1> <br>
+            </section>
+            <input v-model="login" placeholder="Login"> <br>
+            <input type="password" v-model="password" placeholder="Hasło"> <br>
+            <span v-if="loginWindowError" class="form-warning">
+              <b>{% raw %}{{loginWindowError}}{% endraw %}</b>
+            </span>
+            <section v-if="signInAction">
+              <button v-on:click.prevent="signIn" id="sign-in-button"> Zaloguj</button> <br>
+            </section>
+            <section v-if="signUpAction">
+              <button v-on:click.prevent="signUp"> Zarejestruj</button> <br>
+            </section>
+          </form>
+          <button v-on:click.prevent="discardLoginData"> Anuluj</button> <br>
+
+        </div> <!-- div sign-window -->
+      </section> <!-- section pop out sign window -->
+ 
       <nav>
         <div id="nav" >
-            <div class="sign-text" v-on:click="signInAction = true" v-if="!isSessionActive">
-              <b>Zaloguj się</b>
-            </div> &nbsp 
-            <div class="sign-text" v-on:click="signUpAction = true" v-if="!isSessionActive">
-              <b>Zarejestruj się</b>
-            </div> &nbsp 
-            <span v-if="isSessionActive">
-              <b> Zalogowany jako {% raw %}{{login}}{% endraw %} </b>
-            </span> &nbsp | 
-            <div class="sign-text" v-on:click="displayFav" v-if="isSessionActive">
-              <b>Ulubione</b>
-            </div> &nbsp 
-            <div class="sign-text" v-on:click="signOut" v-if="isSessionActive">
-              <b>Wyloguj się</b>
-            </div> &nbsp 
+          <div class="sign-text" v-on:click="signInAction = true" v-if="!isSessionActive">
+            <b>Zaloguj się</b>
+          </div> &nbsp 
+          <div class="sign-text" v-on:click="signUpAction = true" v-if="!isSessionActive">
+            <b>Zarejestruj się</b>
+          </div> &nbsp 
+          <span v-if="isSessionActive">
+            <b> Zalogowany jako {% raw %}{{login}}{% endraw %} </b>
+          </span> &nbsp | 
+          <div class="sign-text" v-on:click="displayFav" v-if="isSessionActive">
+            <b>Ulubione</b>
+          </div> &nbsp 
+          <div class="sign-text" v-on:click="signOut" v-if="isSessionActive">
+            <b>Wyloguj się</b>
+          </div> &nbsp 
         </div> <!-- div nav -->
-        
       </nav>
+
       <header>
         <div id="logo">
-          <img src="../img/logo.png">
+          <img src="../img/logo.png" style="border-radius: 10px;">
         </div> <!-- div logo -->
       </header>
-      
+
       <content>
- 
         <div id="search">
           <form id="serach-form">
             <div id="input-container">
-            <div id="search-title">
-              Wyszukaj klinikę
-            </div>
-            
+              <div id="search-title">
+                Wyszukaj klinikę
+              </div> <!-- div search-title -->
+
               <!-- get region input -->
-            
+
               <div class="input-wrapper">
                 <select v-model='form_default.region' :class="applyInputStyle(region_selected)">
-                   <option value="" disabled selected>Wybierz województwo *</option>
-                   <option v-for="region in regions" v-bind:value="region.value">
+                  <option value="" disabled selected>Wybierz województwo *</option>
+                  <option v-for="region in regions" v-bind:value="region.value">
                     {% raw %}{{ region.text }}{% endraw %}
-                   </option>
-                 </select>
-                 <br>
+                  </option>
+                </select>
+                <br>
               </div> <!-- div input-wrapper -->
-              
+
               <!-- get case input -->
-              
+
               <div class="input-wrapper">
                 <select id="select-cases" v-model='form_default.r_case' :class="applyInputStyle(case_selected)">
                   <option value="" disabled selected>Wybierz przypadek *</option>
                   <option v-for="case_ in r_cases" v-bind:value="case_.value">
-                      {% raw %}{{ case_.text }}{% endraw %}
+                    {% raw %}{{ case_.text }}{% endraw %}
                   </option>
                 </select>
                 <br>
@@ -119,7 +117,7 @@
                 <select v-model='form_default.r_number' :class="applyInputStyle(number_selected)">
                   <option value="" disabled selected>Wybierz ilość rekordów *</option>
                   <option v-for="number in numbers" v-bind:value="number.value">
-                      {% raw %}{{ number.text }}{% endraw %}
+                    {% raw %}{{ number.text }}{% endraw %}
                   </option>
                 </select>
                 <br>
@@ -157,54 +155,59 @@
           </form>
 
           <br>
+
           <section v-if="serverError">
             <div class="unavailable-server-massage" > 
-                <i class="fa fa-exclamation-circle" style="font-size:48px;color:red"></i> <br>
-                <b>Wystąpił błąd. Spróbuj później</b> <br> 
-                <b>{% raw %}{{serverErrorInfo}}{% endraw %}</b> <br> <br>
-                <b><span id="close-message-s" v-on:click="serverError = false">[ Zamknij ]</span></b>
+              <i class="fa fa-exclamation-circle" style="font-size:48px;color:red"></i> <br>
+              <b>Wystąpił błąd. Spróbuj później</b> <br> 
+              <b>{% raw %}{{serverErrorInfo}}{% endraw %}</b> <br> <br>
+              <b><span id="close-message-s" v-on:click="serverError = false">[ Zamknij ]</span></b>
             </div>
           </section>
+
           <section v-if="r_response" id="table-res">
-            
-            <section v-if="data.length != 0">
-                <table>
-                    <tr>
-                      <td> <b>Benefit</b> </td> 
-                      <td> <b>Miasto</b>  </td> 
-                      <td> <b>Ulica</b>   </td> 
-                      <td> <b>Telefon</b> </td>
-                      <td v-if="isSessionActive"> <b> Ulubione </b> </td>
-                    </tr>
-                    <tr v-for="row in data">
-                      <td> {% raw %}{{row.benefit}}{% endraw %}  </td> 
-                      <td> {% raw %}{{row.locality}}{% endraw %} </td> 
-                      <td> {% raw %}{{row.address}}{% endraw %}  </td> 
-                      <td> {% raw %}{{row.phone}}{% endraw %}    </td>
-                      <td v-if="isSessionActive">
-                          <section v-if="!row.is_fav">
-                            <b> <i @click="addToFavourites(row.id)" class="fa fa-star-o"></i> </b> 
-                          </section>
-                          <section v-if="row.is_fav">
-                            <b> <i @click="deleteFromFavourites(row.id)" style="color:blue" class="fa fa-star"></i> </b> 
-                          </section>
-                      </td>
-                    </tr>
-                </table>
-              </section>
-              <section v-if="data.length == 0">
-                <section v-if="isFavTable == false">
-                  <span style="font-size:20px"> 
+            <article v-if="data.length != 0">
+              <table>
+                <tr>
+                  <td> <b>Benefit</b> </td> 
+                  <td> <b>Miasto</b>  </td> 
+                  <td> <b>Ulica</b>   </td> 
+                  <td> <b>Telefon</b> </td>
+                  <td v-if="isSessionActive"> <b> Ulubione </b> </td>
+                </tr>
+                <tr v-for="row in data">
+                  <td> {% raw %}{{row.benefit}}{% endraw %}  </td> 
+                  <td> {% raw %}{{row.locality}}{% endraw %} </td> 
+                  <td> {% raw %}{{row.address}}{% endraw %}  </td> 
+                  <td> {% raw %}{{row.phone}}{% endraw %}    </td>
+                  <td v-if="isSessionActive">
+                    <section v-if="!row.is_fav">
+                      <b> <i @click="addToFavourites(row.id)" class="fa fa-star-o"></i> </b> 
+                    </section>
+                    <section v-else>
+                      <b> <i @click="deleteFromFavourites(row.id)" class="fa fa-star"></i> </b> 
+                    </section>
+                  </td>
+                </tr>
+              </table>
+            </article>
+            <article v-else style="font-size:20px; color:white;">
+              <section v-if="isFavTable == false">
+                <span> 
+                  <b> 
                     Nie znaleniono rekordów. Sprawdź kryteria wyszukiwania 
-                  </span>
-                </section  v-if="isFavTable == true">
-                    Nie masz ulubionych miejsc. Aby dodać ulubione kliknij 
-                    <i @click="addToFavourites(row.id)" class="fa fa-star-o"></i>
-                    przy wybranym rekordzie
-                <section>
-                </section>
+                  </b>
+                </span>
               </section>
-              <br><br><br>
+              <section  v-else>
+                <b>
+                  Nie masz ulubionych miejsc. Aby dodać ulubione kliknij 
+                  <i @click="addToFavourites(row.id)" class="fa fa-star-o"></i>
+                  przy wybranym rekordzie
+                </b>
+              </section>
+            </article>
+            <br><br><br>
           </section>
         </div> <!-- div search -->
         
@@ -213,10 +216,10 @@
     </div> <!-- div container -->
     <script src="vue_common.js"> </script>
     <footer>
-        <div class="footer">
-            Strona używa plików Kukiz <br>
-            Wszelkie prawa zastrzeżone &copy 2020
-        </div>
+      <div class="footer">
+        Strona używa plików Kukiz <br>
+        Wszelkie prawa zastrzeżone &copy 2020
+      </div>
     </footer>
   
   </body>

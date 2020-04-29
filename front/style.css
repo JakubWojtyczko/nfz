@@ -55,6 +55,7 @@ body {
     font-size: 20px;
     border-radius: 10px;
     cursor: pointer;
+    outline: none;
 }
 
 #sign-window button:hover {
@@ -136,7 +137,17 @@ body {
     height: 36px;
     width: 304px;
     border-radius: 10px;
+    background-color: #1a3854;
+    border-color: black;
+    outline: none;
+    color: white;
 }
+
+
+#search button:hover {
+    background-color: #0d243c;
+}
+
 
 #search input {
     width: 300px;
@@ -145,11 +156,21 @@ body {
     font-size: 20px;
     margin: 5px;
     border-radius: 10px;
+    background-color: #1a3854;
+    border-color: black;
+    outline: none;
+    color: white;
 }
+
 
 #search select {
     border-radius: 10px;
+    background-color: #1a3854;
+    outline: none;
+    color: white;
+    border-color: black;
 }
+
 
 .no-input-warning {
     height: 36px;

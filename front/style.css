@@ -121,7 +121,7 @@ body {
 }
 
 #logo {
-    width: 70%;
+    width: 60%;
     margin: 20px auto;
 }
 
@@ -203,16 +203,26 @@ body {
     max-width: 250px;
     background-color: #0d243c;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .unavailable-server-massage {
-    width: 400px;
-    padding: 15px;
-    background-color: white;
-    border: 3px solid red;
-    color: red;
-    border-radius: 24px;
-    margin: 20px auto;
+    width: 100%;
+    padding: 15px 0;
+    background-color: #4d0000;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.console-massage {
+    width: 100%;
+    padding: 15px 0;
+    background-color: #10122f;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 22px;
 }
 
 .footer {
@@ -228,6 +238,5 @@ body {
 }
 
 #close-message-s:hover {
-    text-decoration:underline;
     cursor: pointer;
 }

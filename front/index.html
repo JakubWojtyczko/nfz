@@ -62,8 +62,8 @@
             <b>Zarejestruj się</b>
           </div> &nbsp 
           <span v-if="isSessionActive">
-            <b> Zalogowany jako {% raw %}{{login}}{% endraw %} </b>
-          </span> &nbsp | 
+            <b> Zalogowany jako {% raw %}{{login}}{% endraw %} </b> &nbsp | 
+          </span> &nbsp
           <div class="sign-text" v-on:click="displayFav" v-if="isSessionActive">
             <b>Ulubione</b>
           </div> &nbsp 
@@ -72,6 +72,20 @@
           </div> &nbsp 
         </div> <!-- div nav -->
       </nav>
+      
+      <section v-if="serverError">
+        <div class="unavailable-server-massage" > 
+          <i class="fa fa-exclamation-circle" style="font-size:25px;color:#b30000"></i> &nbsp
+          <b>Wystąpił błąd. Spróbuj później.</b> &nbsp
+          <b><span id="close-message-s" v-on:click="serverError = false"> [ OK ]</span></b>
+        </div>
+      </section>
+
+      <section v-if="consoleMessage">
+        <div class="console-massage">
+         </b> {% raw %}{{consoleMessage}}{% endraw %} </b>
+        </div>
+      </section>
 
       <header>
         <div id="logo">
@@ -156,18 +170,12 @@
 
           <br>
 
-          <section v-if="serverError">
-            <div class="unavailable-server-massage" > 
-              <i class="fa fa-exclamation-circle" style="font-size:48px;color:red"></i> <br>
-              <b>Wystąpił błąd. Spróbuj później</b> <br> 
-              <b>{% raw %}{{serverErrorInfo}}{% endraw %}</b> <br> <br>
-              <b><span id="close-message-s" v-on:click="serverError = false">[ Zamknij ]</span></b>
-            </div>
-          </section>
-
           <section v-if="r_response" id="table-res">
             <article v-if="data.length != 0">
               <table>
+                <tr> <td colspan="5" v-if="isSessionActive && isFavTable"> <b>Ulubione</b> </td> </tr>
+                <tr> <td colspan="5" v-if="isSessionActive && !isFavTable"> <b>Wyniki wyszukiwania</b> </td> </tr>
+                <tr> <td colspan="4" v-if="!isSessionActive"> <b>Wyniki wyszukiwania</b> </td> </tr>
                 <tr>
                   <td> <b>Benefit</b> </td> 
                   <td> <b>Miasto</b>  </td> 

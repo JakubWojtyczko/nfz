@@ -23,6 +23,7 @@ new Vue({
           serverError: false,
           serverErrorInfo: null,
           data: null,
+          consoleMessage: null,
           signInAction: false,
           signUpAction: false,
           login: null,
@@ -127,12 +128,14 @@ new Vue({
     sendRequest:function(params, endpoint, p) {
         // console.log('req');
         var self=this;
+        this.consoleMessage = "Czekaj...";
         this.$http.get('http://' + this.host+ ':' +this.port+ endpoint, {
               params
           }).then(function(response){
             if(response.status == "200"){
               // console.log(response.data)
               //self.data = response.data;
+              self.consoleMessage = null;
               if (p) {
                   self.data = response.data;
                   self.r_response = true;
@@ -148,6 +151,7 @@ new Vue({
             console.log(e);
             self.serverErrorInfo = e;
             self.serverError = true;
+            self.consoleMessage = null;
             self.r_response = false;
             self.logResponse = false;
         }
@@ -191,6 +195,8 @@ new Vue({
                     self.isSessionActive = true;
                     self.createCookieSession('tokenIds', self.sessionToken);
                     self.createCookieSession('login', self.login);
+                    self.consoleMessage = "Logowanie pomyślne";
+                    setTimeout(self.hideConsole, 2000);
                 } else {
                     self.loginWindowError = "Niepoprawne dane";
                 }
@@ -258,6 +264,8 @@ new Vue({
                     self.isSessionActive = true;
                     self.createCookieSession('tokenIds', self.sessionToken);
                     self.createCookieSession('login', self.login);
+                    self.consoleMessage = "Zarejestowano nowego użytkownika";
+                    setTimeout(self.hideConsole, 2000);
               
                 } else {
                     self.loginWindowError = "Podany login już istnieje, wybierz inny";
@@ -323,17 +331,22 @@ new Vue({
     },
     displayFav() {
         var self = this;
+        this.consoleMessage = "Czekaj...";
         this.$http.get('http://' + this.host+ ':' +this.port+ '/displayfav', {
             params: {
                 'tokenId': self.sessionToken,
                 }
         }).then(function(response){
             if(response.status == "200") {
+                self.consoleMessage = null;
                 self.data = response.data;
                 self.r_response = true;
                 self.isFavTable = true;
+                self.serverError = false;
            }
         }).catch((e) => {
+            self.serverError = true;
+            self.consoleMessage = null;
             return;
          }
         )
@@ -345,7 +358,9 @@ new Vue({
         // remove cookies
         this.removeCookiesSesstion();
         // remove forma data
-        this.discardLoginData();        
+        this.discardLoginData();
+        this.consoleMessage = "Pomyślnie wylogowano";
+        setTimeout(this.hideConsole, 2000);        
     },
     isCharAllowed(str) {
         // letters and numbers are allowed.
@@ -370,6 +385,9 @@ new Vue({
     removeCookiesSesstion: function() {
         this.$cookies.remove('tokenIds');
         this.$cookies.remove('login');
+    },
+    hideConsole: function() {
+        this.consoleMessage = null;
     }
   },
   created() {

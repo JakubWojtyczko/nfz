@@ -185,7 +185,7 @@
                   <td> <b>Telefon</b> </td>
                   <td v-if="isSessionActive"> <b> Ulubione </b> </td>
                 </tr>
-                <tr v-for="row in data">
+                <tr v-for="row in data" >
                   <td> {% raw %}{{row.benefit}}{% endraw %}  </td> 
                   <td> {% raw %}{{row.locality}}{% endraw %} </td> 
                   <td> {% raw %}{{row.address}}{% endraw %}  </td> 
@@ -212,7 +212,7 @@
               <section  v-else>
                 <b>
                   Nie masz ulubionych miejsc. Aby dodać ulubione kliknij 
-                  <i @click="addToFavourites(row.id)" class="fa fa-star-o"></i>
+                  <i class="fa fa-star-o"></i>
                   przy wybranym rekordzie
                 </b>
               </section>

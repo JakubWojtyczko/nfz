@@ -121,8 +121,8 @@ body {
 }
 
 #logo {
-    width: 60%;
-    margin: 20px auto;
+    max-width: 950px;
+    margin: 10px auto;
 }
 
 #logo img{
@@ -168,7 +168,6 @@ body {
     background-color: #1a3854;
     outline: none;
     color: white;
-    border-color: black;
 }
 
 
@@ -187,6 +186,7 @@ body {
     font-size: 20px;
     margin:  5px;
     color: black;
+    border-color: black;
 }
 
 .form-warning {

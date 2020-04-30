@@ -382,6 +382,15 @@ new Vue({
         }
         return true;
     },
+    switchSingWindow: function() {
+        if (this.signInAction) {
+            this.discardLoginData();
+            this.signUpAction = true;
+        } else if (this.signUpAction) {
+            this.discardLoginData();
+            this.signInAction = true;
+        }
+    },
     createCookieSession: function(key, val) {
         var d = new Date();
         // cookie expires in 24 H

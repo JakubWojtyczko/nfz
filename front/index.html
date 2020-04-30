@@ -25,7 +25,7 @@
     <div id="container">
     
       <section v-if="signInAction || signUpAction">
-        <div id="shader">
+        <div id="shader" v-on:click.prevent="discardLoginData">
         </div>
         <div id="sign-window">
           <form>
@@ -43,9 +43,13 @@
             </span>
             <section v-if="signInAction">
               <button v-on:click.prevent="signIn" id="sign-in-button"> Zaloguj</button> <br>
+              <b>Nie masz konta? 
+              <span class="hyperlink" @click="switchSingWindow"> Zarejestruj się </span> </b> <br>
             </section>
             <section v-if="signUpAction">
               <button v-on:click.prevent="signUp"> Zarejestruj</button> <br>
+              <b>Masz już konto? 
+              <span class="hyperlink" @click="switchSingWindow"> Zaloguj się</span </b> <br>
             </section>
           </form>
           <button v-on:click.prevent="discardLoginData"> Anuluj</button> <br>

@@ -257,3 +257,14 @@ body {
     cursor: pointer;
     color: white;
 }
+
+.hyperlink {
+    color: #41f4fd;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.hyperlink:hover {
+    cursor: pointer;
+    color: #03dc00;
+}

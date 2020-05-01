@@ -3,9 +3,9 @@
 <html>
 
   <head>
-    <title>NFZ - Czas leczy rany</title>
+    <title>FastMed - Czas leczy rany</title>
     <meta charset="utf-8" >
-    <meta name="description" content="NFZ - Czas leczy rany.">
+    <meta name="description" content="Nie pędź tak proszę, daj odpocząć.">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -39,7 +39,7 @@
             <input v-model="login" placeholder="Login"> <br>
             <input type="password" v-model="password" placeholder="Hasło"> <br>
             <span v-if="loginWindowError" class="form-warning">
-              <b>{% raw %}{{loginWindowError}}{% endraw %}</b>
+              <b>{{loginWindowError}}</b>
             </span>
             <section v-if="signInAction">
               <button v-on:click.prevent="signIn" id="sign-in-button"> Zaloguj</button> <br>
@@ -66,7 +66,7 @@
             <b>Zarejestruj się</b>
           </div> &nbsp 
           <span v-if="isSessionActive">
-            <b> Zalogowany jako {% raw %}{{login}}{% endraw %} </b> &nbsp | 
+            <b> Zalogowany jako {{login}} </b> &nbsp | 
           </span> &nbsp
           <div class="sign-text" v-on:click="displayFav" v-if="isSessionActive">
             <b>Ulubione</b>
@@ -88,14 +88,14 @@
         
         <section v-if="consoleMessage">
           <div class="console-massage">
-           </b> {% raw %}{{consoleMessage}}{% endraw %} </b>
+           </b> {{consoleMessage}} </b>
           </div>
         </section>
       </div>
       
       <header>
         <div id="logo">
-          <img src="../img/logo.png" style="border-radius: 10px;">
+          <img src="img/logo.png" style="border-radius: 10px;">
         </div> <!-- div logo -->
       </header>
 
@@ -113,7 +113,7 @@
                 <select v-model='form_default.region' :class="applyInputStyle(region_selected)">
                   <option value="" disabled selected>Województwo *</option>
                   <option v-for="region in regions" v-bind:value="region.value">
-                    {% raw %}{{ region.text }}{% endraw %}
+                    {{ region.text }}
                   </option>
                 </select>
                 <br>
@@ -125,7 +125,7 @@
                 <select id="select-cases" v-model='form_default.r_case' :class="applyInputStyle(case_selected)">
                   <option value="" disabled selected>Przypadek *</option>
                   <option v-for="case_ in r_cases" v-bind:value="case_.value">
-                    {% raw %}{{ case_.text }}{% endraw %}
+                    {{ case_.text }}
                   </option>
                 </select>
                 <br>
@@ -137,7 +137,7 @@
                 <select v-model='form_default.r_number' :class="applyInputStyle(number_selected)">
                   <option value="" disabled selected>Limit rekordów *</option>
                   <option v-for="number in numbers" v-bind:value="number.value">
-                    {% raw %}{{ number.text }}{% endraw %}
+                    {{ number.text }}
                   </option>
                 </select>
                 <br>
@@ -190,10 +190,10 @@
                   <td v-if="isSessionActive"> <b> Ulubione </b> </td>
                 </tr>
                 <tr v-for="row in data" >
-                  <td> {% raw %}{{row.benefit}}{% endraw %}  </td> 
-                  <td> {% raw %}{{row.locality}}{% endraw %} </td> 
-                  <td> {% raw %}{{row.address}}{% endraw %}  </td> 
-                  <td> {% raw %}{{row.phone}}{% endraw %}    </td>
+                  <td> {{row.benefit}}  </td> 
+                  <td> {{row.locality}} </td> 
+                  <td> {{row.address}}  </td> 
+                  <td> {{row.phone}}    </td>
                   <td v-if="isSessionActive">
                     <section v-if="!row.is_fav">
                       <b> <i @click="addToFavourites(row.id)" class="fa fa-star-o"></i> </b> 

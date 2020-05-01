@@ -5,9 +5,9 @@ new Vue({
   data() {
     return {
           // host address
-          host: "127.0.0.1",
+          host: "52.29.108.182",
           // host port
-          port: '8080',
+          port: '8081',
           
           login_selected: true,
           password_selected: true,

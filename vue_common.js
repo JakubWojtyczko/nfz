@@ -130,7 +130,7 @@ new Vue({
         var self=this;
         this.consoleMessage = "Czekaj...";
         this.serverError = false;
-        this.$http.get('http://' + this.host+ ':' +this.port+ endpoint, {
+        this.$http.get('https://' + this.host+ ':' +this.port+ endpoint, {
               params
           }).then(function(response){
             if(response.status == "200"){
@@ -180,7 +180,7 @@ new Vue({
         }
         var self=this;
         
-        this.$http.get('http://' + this.host+ ':' +this.port+ '/signin', {
+        this.$http.get('https://' + this.host+ ':' +this.port+ '/signin', {
             params: {
                 'login': self.login, 
                 'password': self.password
@@ -253,7 +253,7 @@ new Vue({
             return;
         }
         var self = this;
-        this.$http.get('http://' + this.host+ ':' +this.port+ '/signup', {
+        this.$http.get('https://' + this.host+ ':' +this.port+ '/signup', {
             params: {
                 'login': self.login, 
                 'password': self.password
@@ -289,7 +289,7 @@ new Vue({
     },
     addToFavourites(id) {
         var self = this;
-        this.$http.get('http://' + this.host+ ':' +this.port+ '/addfav', {
+        this.$http.get('https://' + this.host+ ':' +this.port+ '/addfav', {
             params: {
                 'tokenId': self.sessionToken, 
                 'queueId': id
@@ -309,7 +309,7 @@ new Vue({
     },
     deleteFromFavourites(id) {
         var self = this;
-        this.$http.get('http://' + this.host+ ':' +this.port+ '/removefav', {
+        this.$http.get('https://' + this.host+ ':' +this.port+ '/removefav', {
             params: {
                 'tokenId': self.sessionToken, 
                 'queueId': id
@@ -339,7 +339,7 @@ new Vue({
         var self = this;
         this.consoleMessage = "Czekaj...";
         this.serverError = false;
-        this.$http.get('http://' + this.host+ ':' +this.port+ '/displayfav', {
+        this.$http.get('https://' + this.host+ ':' +this.port+ '/displayfav', {
             params: {
                 'tokenId': self.sessionToken,
                 }

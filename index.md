@@ -12,7 +12,7 @@
 <br>
 
 # Wstęp
-Nasza aplikacja o nazwie FastMed służy do wyszukiwania placówek, w których jest wolny termin do lekarza na podstawie krótkiego formularza. Po wyszukaniu otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nasza aplikacja o nazwie FastMed służy do wyszukiwania placówek, w których jest wolny termin do lekarza na podstawie krótkiego formularza. Po wyszukaniu otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym.
 <br>
 Dodatkowe opcje aplikacji FastMed są dostępne po dokonaniu rejstracji lub zalogowaniu się na podstawie wcześniej stworzonego konta. Są nimi możliwość dodawania lub usuwania wybranych rekordów do bazy ulubionych i przeglądania listy ulibionych oraz swojej histroii wyszukiwania. W historii wyszukiwania ponadto możemy użyć "lupki" aby ponownie wyszukać interesującą nas wizytę.
 <br>

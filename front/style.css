@@ -88,6 +88,10 @@ body {
     padding: 7px 0;
 }
 
+#nav i {
+    vertical-align: -5px;
+}
+
 #search {
     width:100%;
     text-align: center;
@@ -267,4 +271,41 @@ body {
 .hyperlink:hover {
     cursor: pointer;
     color: #03dc00;
+}
+
+#history-search {
+    color: #bfbfbf;
+}
+
+#history-search:hover {
+    cursor: pointer;
+    color: white;
+}
+
+ul li {
+    list-style-type: none;
+    background-color: #0d243c;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: left;
+    border-radius: 10px;
+}
+
+#history-box {
+    margin: 10px auto;
+    max-width: 950px;
+    font-size: 15px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+#history-box i {
+    vertical-align: -4px;
+    font-size: 20px;
 }

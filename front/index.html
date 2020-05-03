@@ -8,6 +8,7 @@
     <meta name="description" content="NFZ - Czas leczy rany.">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <!-- Vue (out comment one of 2 following) -->
     <!-- development -->
@@ -66,13 +67,17 @@
             <b>Zarejestruj się</b>
           </div> &nbsp 
           <span v-if="isSessionActive">
-            <b> Zalogowany jako {% raw %}{{login}}{% endraw %} </b> &nbsp | 
+            <b> <i class="small material-icons">person</i>
+            Zalogowany jako {% raw %}{{login}}{% endraw %} </b> &nbsp | 
           </span> &nbsp
           <div class="sign-text" v-on:click="displayFav" v-if="isSessionActive">
-            <b>Ulubione</b>
+            <b><i class="small material-icons">favorite</i>Ulubione</b>
+          </div> &nbsp 
+          <div class="sign-text" v-on:click="showHistory" v-if="isSessionActive">
+            <b><i class="small material-icons">history</i>Historia</b>
           </div> &nbsp 
           <div class="sign-text" v-on:click="signOut" v-if="isSessionActive">
-            <b>Wyloguj się</b>
+            <b><i class="small material-icons">power_settings_new</i><b>Wyloguj się</b>
           </div> &nbsp 
         </div> <!-- div nav -->
       </nav>
@@ -222,6 +227,45 @@
               </section>
             </article>
             <br><br><br>
+          </section>
+          <section v-if="history">
+            <div id="history-box">
+              <section v-if="history.length">
+                <ul v-for="row in history">
+                  <li>
+                    <div class="left">
+                       <i class="small material-icons">access_time</i>{% raw %}{{row.timestamp}}{% endraw %} &nbsp
+                       <i class="small material-icons">landscape</i>{% raw %}{{getProvince(row.province)}}{% endraw %} 
+                       &nbsp
+                       <span v-if="row.case == 1">
+                         <i class="small material-icons">accessibility</i> stabliny &nbsp
+                       </span>
+                       <span v-if="row.case == 2">
+                         <i class="small material-icons">accessible</i> pilny &nbsp
+                       </span>
+                       <i class="small material-icons">list</i>{% raw %}{{row.limit}}{% endraw %} &nbsp
+                       <span v-if="row.benefit">
+                         <i class="small material-icons">local_hospital</i> {% raw %}{{row.benefit}}{% endraw %} &nbsp
+                       </span>
+                       <span v-if="row.location">
+                         <i class="small material-icons">domain</i> {% raw %}{{row.location}}{% endraw %} &nbsp
+                       </span>
+                     </div>
+                     <div class="right">
+                       <label id="history-search" @click="restoreHistory(row)">
+                       <i class="small material-icons">search</i>
+                       Wyszukaj ponownie
+                       </label>
+                     </div>
+                     <div style="clear:both"></div>
+                  </li>
+                </ul>
+              </section>
+              <section v-else style="font-size:25px;">
+                <b>Historia jest pusta </b>
+              </section>
+              <br> <br> <br>
+            </div> <!-- div history-box -->
           </section>
         </div> <!-- div search -->
         

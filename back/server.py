@@ -39,6 +39,13 @@ def get():
     jp = JsonParser(req.rec_response())
     jp.parse(token)
     status_code = Response(status=200)
+    if token:
+        try:
+            db = DataBase()
+            db.add_to_history(token, region, benefit, case, number, location)
+        except Exception as e:
+            print('error while adding history row:' + str(e))
+            pass
     # print(jp.response)
     return jsonify(jp.response)
 
@@ -111,5 +118,16 @@ def remove_fav():
      return "ok", 200
 
 
+@app.route('/showhistory', methods=['GET', 'POST'])
+def show_history():
+    token = request.args.get('tokenId')
+    db = DataBase()
+    history = db.get_history(token)
+    # reverse list to have most recent elements
+    # first
+    history.reverse()
+    return jsonify(history)
+
+    
 if __name__ == '__main__':
     app.run(port=8080)

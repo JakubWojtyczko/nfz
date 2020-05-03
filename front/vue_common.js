@@ -23,6 +23,7 @@ new Vue({
           serverError: false,
           serverErrorInfo: null,
           data: null,
+          history: null,
           consoleMessage: null,
           signInAction: false,
           signUpAction: false,
@@ -112,7 +113,7 @@ new Vue({
           // console.log("region " + this.form_default.region);
           // console.log("case " + this.form_default.r_case);
           // console.log("benefit " + this.form_default.benefit);
-          
+          this.clearBoard();
           this.sendRequest({
                 r_region: this.form_default.region,
                 r_case: this.form_default.r_case,
@@ -339,6 +340,7 @@ new Vue({
         var self = this;
         this.consoleMessage = "Czekaj...";
         this.serverError = false;
+        this.clearBoard();
         this.$http.get('http://' + this.host+ ':' +this.port+ '/displayfav', {
             params: {
                 'tokenId': self.sessionToken,
@@ -368,8 +370,7 @@ new Vue({
         this.discardLoginData();
         this.consoleMessage = "Pomyślnie wylogowano";
         // clear received data
-        this.r_response = false;
-        this.data = null;
+        this.clearBoard();
         setTimeout(this.hideConsole, 2000);
     },
     isCharAllowed(str) {
@@ -407,6 +408,61 @@ new Vue({
     },
     hideConsole: function() {
         this.consoleMessage = null;
+    },
+    showHistory: function() {
+        var self = this;
+        this.consoleMessage = "Czekaj...";
+        this.serverError = false;
+        this.clearBoard();
+        this.$http.get('http://' + this.host+ ':' +this.port+ '/showhistory', {
+            params: {
+                'tokenId': self.sessionToken,
+                }
+        }).then(function(response){
+            if(response.status == "200") {
+                self.consoleMessage = null;
+                self.history = response.data;
+                console.log(self.history);
+                self.isFavTable = false;
+                self.r_response = false;
+                self.serverError = false;
+           }
+        }).catch((e) => {
+            console.log(self.history);
+            self.serverError = true;
+            self.consoleMessage = null;
+            return;
+         }
+        )
+    },
+    getProvince: function(x) {
+        for (var i=0; i<this.regions.length; ++i) {
+            if (this.regions[i].value === x) {
+                return this.regions[i].text;
+            }
+        }
+    },
+    restoreHistory: function(row) {
+        this.form_default.region = row.province;
+        this.form_default.r_case = row.case;
+        this.form_default.benefit = row.benefit;
+        this.form_default.r_number = row.limit;
+        this.form_default.r_location = row.location;
+        this.clearBoard();
+        this.sendRequest({
+                r_region: this.form_default.region,
+                r_case: this.form_default.r_case,
+                r_benefit: this.form_default.benefit,
+                r_number: this.form_default.r_number,
+                r_location: this.form_default.r_location,
+                r_token: this.sessionToken,
+          }, '/get', true);
+    },
+    clearBoard: function() {
+        this.r_response = null;
+        this.data = null;
+        this.isFavTable = false;
+        this.history = null;
     }
   },
   created() {

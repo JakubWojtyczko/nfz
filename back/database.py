@@ -1,4 +1,7 @@
 import os
+import datetime
+import time
+
 
 class DataBase:
 
@@ -72,3 +75,38 @@ class DataBase:
                 if old_token == token:
                     fav_list.append(old_id)  
         return fav_list
+
+    def get_history(self, token):
+        if not os.path.isfile('../history_db.txt'):
+            return []
+        history_list = []
+        with open('../history_db.txt') as file:
+            for line in file.readlines():
+                try:
+                    old_token, timestamp, province, case, limit, benefit, location = line.split(';;;')
+                    if old_token == token:
+                        history_row = {}
+                        history_row["timestamp"] = timestamp
+                        history_row["province"] = province
+                        history_row["case"] = case
+                        history_row["limit"] = limit
+                        history_row["benefit"] = benefit
+                        history_row["location"] = location
+                        for key, value in history_row.items():
+                            if value in ["", "\n", " "]:
+                                history_row[key] = None
+                        history_list.append(history_row)
+                except Exception as e:
+                    print(e)
+        return history_list
+
+    def add_to_history(self, token, province, benefit, case, limit, location):
+        if benefit is None:
+            benefit = ""
+        if location is None:
+            location = ""
+        with open('../history_db.txt', 'a') as file:
+            ts = time.time()
+            timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+            file.writelines(["{};;;{};;;{};;;{};;;{};;;{};;;{}\n"
+                             .format(token, timestamp, province, case, limit, benefit, location)])

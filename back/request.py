@@ -26,7 +26,7 @@ class Request:
             self.reqiest = self.reqiest + '&locality=' + self.to_ascii_url(location)
         
         # print debug url
-        print("request: " + self.reqiest)
+        # print("request: " + self.reqiest)
 
     def create_fav_request(self, id_nfz):
     

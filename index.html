@@ -1,0 +1,83 @@
+<h1 id="fastmed-app">FastMed App</h1>
+<h2 id="spis-treści">Spis Treści:</h2>
+<ol style="list-style-type: decimal">
+<li><a href="#wstep">Wstęp</a></li>
+<li><a href="#funkcjonalnosc">Funkcje aplikacji</a>
+<ol style="list-style-type: decimal">
+<li><a href="#fast_search">Wyszukiwanie wizyt</a></li>
+<li><a href="#login">Logowanie oraz rejstracja do aplikacji</a></li>
+<li><a href="#fav">Ulubione</a></li>
+<li><a href="#history">Historia wyszukiwania</a></li>
+</ol></li>
+<li><a href="#stack">Wykorzystane technologie</a></li>
+<li><a href="#authors">Autorzy</a> <a name="wstep"></a> <br></li>
+</ol>
+<h1 id="wstęp">Wstęp</h1>
+      Nasza aplikacja o nazwie FastMed służy do wyszukiwania placówek, w których jest wolny termin do lekarza na podstawie krótkiego formularza. Po wyszukaniu otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym. <br>       Dodatkowe opcje aplikacji FastMed są dostępne po dokonaniu rejstracji lub zalogowaniu się na podstawie wcześniej stworzonego konta. Są nimi możliwość dodawania lub usuwania wybranych rekordów do bazy ulubionych i przeglądania listy ulibionych oraz swojej histroii wyszukiwania. W historii wyszukiwania ponadto możemy użyć &quot;lupki&quot; aby ponownie wyszukać interesującą nas wizytę. <br>       Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewnętrznym. Można odnaleźć ją <a href="http://52.29.108.182:8081/">TUTAJ</a>. <br> <br> <img src="main_screen.png" alt="Ekran Główny" width="1000rem"/>
+<div align="center">
+<i>Ekran główny aplikacji FastMed</i>
+</div>
+<p><a name="funkcjonalnosc"></a> <br></p>
+<h1 id="funkcje-aplikacji">Funkcje Aplikacji</h1>
+<p><a name="fast_search"></a></p>
+<h2 id="wyszukiwanie-wizyt">Wyszukiwanie wizyt</h2>
+<div>
+<div style="text-align: justify">
+<img src="fast_search.png" alt="Wyszukiwanie wizyt" width="1000rem"/>
+<div align="center">
+<i>Ekran wyszukiwania aplikacji FastMed</i>
+</div>
+<br>       Wyszukiwanie wizyt jest dostępne zarówno przed jak i po zalogowaniu się użytkownika. Aby rozpocząć wyszukiwanie najpierw musimy wypełnić niewielki formularz. Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia. Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia. Następnei po naciśnięciu przycisku &quot;Wyszukaj&quot; otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym. Są to podstawowe informacje pozwalające nam na kontakt z daną placówką.<br />
+</div>
+</div>
+<p><br> <a name="login"></a></p>
+<h2 id="logowanie-oraz-rejstracja-do-aplikacji">Logowanie oraz rejstracja do aplikacji</h2>
+<div>
+<div style="text-align: justify">
+<img src="login.png" alt="Wyszukiwanie po składnikach" width="1000rem"/>
+<div align="center">
+<i>Ekran logowania aplikacji FastMed</i>
+</div>
+<br>       Rejestracja konta oraz logowanie pozwala na używanie większej ilości funkcji w aplikacji FastMed. Funkcjami tymi jest mozliwość dodawania, usuwania oraz sprawdzania listy swoich ulubionych placówek oraz automatyczne zapisywanie wyszukiwanych przez nas wcześniej placówek.
+</div>
+</div>
+<p><br> <a name="fav"></a></p>
+<h2 id="ulubione">Ulubione</h2>
+<div>
+<div style="text-align: justify">
+<img src="fav.png" alt="Ulubione" width="1000rem"/>
+<div align="center">
+<i>Ekran ulubione aplikacji FastMed</i>
+</div>
+<br><br />      Dodawanie wybranych przez użytkownika placówek do zakładki &quot;Ulubione&quot; pozwala na szybsze poruszanie się po stronie. Gdy jednego dnia użytkownik będzie chciał wyszukać placówkę, jednak nie będzie miał czasu wykonać telefonu w celu umówienia wizyty, będzie mógł on dodać ją do wspomnianej zakładki i przykładowo następnego dnia szybko odnaleźć numer telefonu.
+</div>
+</div>
+<p><br> <a name="history"></a></p>
+<h2 id="historia-wyszukiwania">Historia wyszukiwania</h2>
+<div>
+<div style="text-align: justify">
+<img src="history.png" alt="Historia wyszukiwania" width="1000rem"/>
+<div align="center">
+<i>Ekran histori aplikacji FastMed</i>
+</div>
+<br>       Aplikacja posiada funkcjonalność polegającą na automatycznym zapisywaniu historii wyszukiwania użytkownika. Funkcja ta jest bardzo przydatna, gdyż po wejściu w zakładkę &quot;Historia&quot; łatwo znaleźć załadowane wcześniej rekordy. Będzie to na pewno duża udogodność dla osób z chorobami przewlekłymi, u których choroby pojawiają się w większej częstotliwości.
+</div>
+</div>
+<p><br></p>
+<p><a name="stack"></a></p>
+<h2 id="wykorzystane-technologie">Wykorzystane technologie:</h2>
+<ul>
+<li><p>python - język programowania wysokiego poziomu ogólnego przeznaczenia, o rozbudowanym pakiecie bibliotek standardowych, którego ideą przewodnią jest czytelność i klarowność kodu źródłowego. Jego składnia cechuje się przejrzystością i zwięzłością.</p></li>
+<li><p>HTTP cookie - mały fragment tekstu, który serwis internetowy wysyła do przeglądarki i który przeglądarka wysyła z powrotem przy następnych wejściach na witrynę. Używane jest głównie do utrzymywania sesji np. poprzez wygenerowanie i odesłanie tymczasowego identyfikatora po logowaniu. Może być jednak wykorzystywane szerzej poprzez zapamiętanie dowolnych danych, które można zakodować jako ciąg znaków. Dzięki temu użytkownik nie musi wpisywać tych samych informacji za każdym razem, gdy powróci na tę stronę lub przejdzie z jednej strony na inną.</p></li>
+<li><p>ajax - technika tworzenia aplikacji internetowych, w których interakcja użytkownika z serwerem odbywa się bez przeładowywania całego dokumentu, w sposób asynchroniczny. Ma to umożliwiać bardziej dynamiczną interakcję z użytkownikiem niż w tradycyjnym modelu, w którym każde żądanie nowych danych wiąże się z przesłaniem całej strony HTML.</p></li>
+<li><p>flask - mikro framework aplikacji webowych napisany w języku Python. Jest sklasyfikowany jako micro-framework, ponieważ nie wymaga określonych narzędzi ani bibliotek. Nie ma warstwy abstrakcji bazy danych, sprawdzania poprawności formularzy ani żadnych innych komponentów, w których istniejące biblioteki stron trzecich zapewniają wspólne funkcje. Jednak Flask obsługuje rozszerzenia, które mogą dodawać funkcje aplikacji tak, jakby były zaimplementowane w samym Flasku. Aby uniknąć restrykcji CORS origin użwane jest również rozszerzenie flask_cors.</p></li>
+<li><p>urlib - jest modułem Pythona do pobierania zasobów z sieci za pośrednictwem URL-i (ang. Uniform Resource Locators). Oferuje on uproszczony interfejs w formie funkcji urlopen, która pozwala na pobranie zasobów przy użyciu różnych protokołów.</p></li>
+<li><p>vue.js - Vue.js, podobnie jak React.js czy Angular, należy do rodziny najbardziej popularnych frameworków JavaScript służących do budowania interfejsów użytkownika. Pozwala na tworzenie zarówno prostych komponentów, jak i zaawansowanych i skalowalnych aplikacji typu SPA (Single-Page Application) przy wykorzystaniu dodatkowych narzędzi i bibliotek.</p></li>
+<li><p>API - baza API jest udostępniana nieodpłatnie poprzez Naradowy Fundusz Zdrowia i jest ona ogólnodostępna. Znaleźć ją można pod tym linkiem <a href="https://api.nfz.gov.pl/">NFZ</a> w zakładce &quot;Terminy Leczenia&quot;. <br> <a name="authors"></a></p></li>
+</ul>
+<h2 id="autorzy">Autorzy</h2>
+<ul>
+<li>Konrad Flaka</li>
+<li>Tomasz Piechowicz</li>
+<li>Lech Kozyra</li>
+</ul>

@@ -30,7 +30,9 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 ## Wyszukiwanie wizyt
 <div>
 <div style="text-align: justify">
-<img src="fast_search.png" alt="Wyszukiwanie wizyt" width="500rem" style="float: right;"/> Wyszukiwanie wizyt jest dostępne zarówno przed jak i po zalogowaniu się użytkownika. Aby rozpocząć wyszukiwanie najpierw musimy wypełnić niewielki formularz. Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia.  Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia. Następnei po naciśnięciu przycisku "Wyszukaj" otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym. Są to podstawowe informacje pozwalające nam na kontakt z daną placówką.  
+<img src="fast_search.png" alt="Wyszukiwanie wizyt" width="1000rem"/>
+<br> 
+    Wyszukiwanie wizyt jest dostępne zarówno przed jak i po zalogowaniu się użytkownika. Aby rozpocząć wyszukiwanie najpierw musimy wypełnić niewielki formularz. Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia.  Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia. Następnei po naciśnięciu przycisku "Wyszukaj" otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym. Są to podstawowe informacje pozwalające nam na kontakt z daną placówką.  
 </div>
 </div>
 <br>
@@ -84,4 +86,4 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 ## Autorzy
 * Konrad Flaka
 * Tomasz Piechowicz
-* Lech
+* Lech Kozyra

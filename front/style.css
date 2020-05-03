@@ -70,6 +70,15 @@ body {
     padding: 10px;
 }
 
+.sign-text-choosen {
+    display: inline-block;
+    padding: 10px;
+    background-color: #1a3854;
+    cursor: pointer;
+    color: #b3b3b3;
+    border-radius: 10px;
+}
+
 .sign-text:hover {
     border-radius: 10px;
     background-color: #1a3854;

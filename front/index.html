@@ -70,10 +70,10 @@
             <b> <i class="small material-icons">person</i>
             Zalogowany jako {% raw %}{{login}}{% endraw %} </b> &nbsp | 
           </span> &nbsp
-          <div class="sign-text" v-on:click="displayFav" v-if="isSessionActive">
+          <div :class="applyClassMark(isFavTable)" v-on:click="displayFav" v-if="isSessionActive">
             <b><i class="small material-icons">favorite</i>Ulubione</b>
           </div> &nbsp 
-          <div class="sign-text" v-on:click="showHistory" v-if="isSessionActive">
+          <div :class="applyClassMark(history)" v-on:click="showHistory" v-if="isSessionActive">
             <b><i class="small material-icons">history</i>Historia</b>
           </div> &nbsp 
           <div class="sign-text" v-on:click="signOut" v-if="isSessionActive">

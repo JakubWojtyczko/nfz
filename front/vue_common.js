@@ -463,6 +463,13 @@ new Vue({
         this.data = null;
         this.isFavTable = false;
         this.history = null;
+    },
+    applyClassMark(isChoosen) {
+        if (isChoosen) {
+            return 'sign-text-choosen'
+        } else {
+            return 'sign-text';
+        }
     }
   },
   created() {

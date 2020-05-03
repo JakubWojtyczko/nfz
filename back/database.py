@@ -109,4 +109,4 @@ class DataBase:
             ts = time.time()
             timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
             file.writelines(["{};;;{};;;{};;;{};;;{};;;{};;;{}\n"
-                             .format(token, timestamp, province, case, limit, benefit, location)])
+                             .format(token, timestamp, province, case, limit, benefit, location.strip())])

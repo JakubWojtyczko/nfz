@@ -54,7 +54,10 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 ## Ulubione
 <div>
 <div style="text-align: justify">
-<img src="fav.png" alt="Ulubione" width="500rem" style="float: right;"/> Dodawanie wybranych przez użytkownika placówek do zakładki "Ulubione" pozwala na szybsze poruszanie się po stronie. Gdy jednego dnia użytkownik będzie chciał wyszukać placówkę, jednak nie będzie miał czasu wykonać telefonu w celu umówienia wizyty, będzie mógł on dodać ją do wspomnianej zakładki i przykładowo następnego dnia szybko odnaleźć numer telefonu.
+<img src="fav.png" alt="Ulubione" width="1000rem"/>
+<div align="center"><i>Ekran ulubione aplikacji FastMed</i></div>
+<br>    
+    Dodawanie wybranych przez użytkownika placówek do zakładki "Ulubione" pozwala na szybsze poruszanie się po stronie. Gdy jednego dnia użytkownik będzie chciał wyszukać placówkę, jednak nie będzie miał czasu wykonać telefonu w celu umówienia wizyty, będzie mógł on dodać ją do wspomnianej zakładki i przykładowo następnego dnia szybko odnaleźć numer telefonu.
 </div>
 </div>
 <br>

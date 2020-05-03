@@ -31,6 +31,7 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 <div>
 <div style="text-align: justify">
 <img src="fast_search.png" alt="Wyszukiwanie wizyt" width="1000rem"/>
+<div align="center"><i>Ekran wyszukiwania aplikacji FastMed</i></div>
 <br> 
     Wyszukiwanie wizyt jest dostępne zarówno przed jak i po zalogowaniu się użytkownika. Aby rozpocząć wyszukiwanie najpierw musimy wypełnić niewielki formularz. Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia.  Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia. Następnei po naciśnięciu przycisku "Wyszukaj" otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym. Są to podstawowe informacje pozwalające nam na kontakt z daną placówką.  
 </div>
@@ -42,6 +43,7 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 <div>
 <div style="text-align: justify">
 <img src="login.png" alt="Wyszukiwanie po składnikach" width="1000rem"/>
+<div align="center"><i>Ekran logowania aplikacji FastMed</i></div>
 <br>
     Rejestracja konta oraz logowanie pozwala na używanie większej ilości funkcji w aplikacji FastMed. Funkcjami tymi jest mozliwość dodawania, usuwania oraz sprawdzania listy swoich ulubionych placówek oraz automatyczne zapisywanie wyszukiwanych przez nas wcześniej placówek.
 </div>
@@ -61,7 +63,10 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 ## Historia wyszukiwania
 <div>
 <div style="text-align: justify">
-<img src="history.png" alt="Historia wyszukiwania" width="500rem" style="float: left;"/> Aplikacja posiada funkcjonalność polegającą na automatycznym zapisywaniu historii wyszukiwania użytkownika. Funkcja ta jest bardzo przydatna, gdyż po wejściu w zakładkę "Historia" łatwo znaleźć załadowane wcześniej rekordy. Będzie to na pewno duża udogodność dla osób z chorobami przewlekłymi, u których choroby pojawiają się w większej częstotliwości.
+<img src="history.png" alt="Historia wyszukiwania" width="1000rem"/>
+<div align="center"><i>Ekran histori aplikacji FastMed</i></div>
+<br>
+    Aplikacja posiada funkcjonalność polegającą na automatycznym zapisywaniu historii wyszukiwania użytkownika. Funkcja ta jest bardzo przydatna, gdyż po wejściu w zakładkę "Historia" łatwo znaleźć załadowane wcześniej rekordy. Będzie to na pewno duża udogodność dla osób z chorobami przewlekłymi, u których choroby pojawiają się w większej częstotliwości.
 </div>
 </div>
 <br>

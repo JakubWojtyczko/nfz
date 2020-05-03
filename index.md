@@ -14,9 +14,9 @@
 # Wstęp
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nasza aplikacja o nazwie FastMed służy do wyszukiwania placówek, w których jest wolny termin do lekarza na podstawie krótkiego formularza. Po wyszukaniu otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym.
 <br>
-Dodatkowe opcje aplikacji FastMed są dostępne po dokonaniu rejstracji lub zalogowaniu się na podstawie wcześniej stworzonego konta. Są nimi możliwość dodawania lub usuwania wybranych rekordów do bazy ulubionych i przeglądania listy ulibionych oraz swojej histroii wyszukiwania. W historii wyszukiwania ponadto możemy użyć "lupki" aby ponownie wyszukać interesującą nas wizytę.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dodatkowe opcje aplikacji FastMed są dostępne po dokonaniu rejstracji lub zalogowaniu się na podstawie wcześniej stworzonego konta. Są nimi możliwość dodawania lub usuwania wybranych rekordów do bazy ulubionych i przeglądania listy ulibionych oraz swojej histroii wyszukiwania. W historii wyszukiwania ponadto możemy użyć "lupki" aby ponownie wyszukać interesującą nas wizytę.
 <br>
-Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewnętrznym. Można odnaleźć ją [TUTAJ](http://52.29.108.182:8081/).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewnętrznym. Można odnaleźć ją [TUTAJ](http://52.29.108.182:8081/).
 <br>
 <br>
 <img src="main_screen.png" alt="Ekran Główny" width="1000rem"/>
@@ -33,7 +33,7 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 <img src="fast_search.png" alt="Wyszukiwanie wizyt" width="1000rem"/>
 <div align="center"><i>Ekran wyszukiwania aplikacji FastMed</i></div>
 <br> 
-    Wyszukiwanie wizyt jest dostępne zarówno przed jak i po zalogowaniu się użytkownika. Aby rozpocząć wyszukiwanie najpierw musimy wypełnić niewielki formularz. Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia.  Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia. Następnei po naciśnięciu przycisku "Wyszukaj" otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym. Są to podstawowe informacje pozwalające nam na kontakt z daną placówką.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wyszukiwanie wizyt jest dostępne zarówno przed jak i po zalogowaniu się użytkownika. Aby rozpocząć wyszukiwanie najpierw musimy wypełnić niewielki formularz. Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia.  Obligatoryjnymi pozycjami do wyboru są: wojewódctwo, stan pacjenta (stabilny/pilny) oraz maksymalna ilość wyświetlanych rekordów. Dodatkowymi opcjami jest rodzaj możliwość wpisania nazwy miejscowości znajdującej się w danym wojewódctwie oraz rodzaj benefitu, przez który rozumiany jest typ szukanej placówki, przykładowo czy jest to poradnia, przychodnia lub fizjoterapia. Następnei po naciśnięciu przycisku "Wyszukaj" otrzymujemy tabelę wraz z nazwą placówki, adresem oraz numerem kontaktowym. Są to podstawowe informacje pozwalające nam na kontakt z daną placówką.  
 </div>
 </div>
 <br>
@@ -45,7 +45,7 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 <img src="login.png" alt="Wyszukiwanie po składnikach" width="1000rem"/>
 <div align="center"><i>Ekran logowania aplikacji FastMed</i></div>
 <br>
-    Rejestracja konta oraz logowanie pozwala na używanie większej ilości funkcji w aplikacji FastMed. Funkcjami tymi jest mozliwość dodawania, usuwania oraz sprawdzania listy swoich ulubionych placówek oraz automatyczne zapisywanie wyszukiwanych przez nas wcześniej placówek.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rejestracja konta oraz logowanie pozwala na używanie większej ilości funkcji w aplikacji FastMed. Funkcjami tymi jest mozliwość dodawania, usuwania oraz sprawdzania listy swoich ulubionych placówek oraz automatyczne zapisywanie wyszukiwanych przez nas wcześniej placówek.
 </div>
 </div>
 <br>
@@ -57,7 +57,7 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 <img src="fav.png" alt="Ulubione" width="1000rem"/>
 <div align="center"><i>Ekran ulubione aplikacji FastMed</i></div>
 <br>    
-    Dodawanie wybranych przez użytkownika placówek do zakładki "Ulubione" pozwala na szybsze poruszanie się po stronie. Gdy jednego dnia użytkownik będzie chciał wyszukać placówkę, jednak nie będzie miał czasu wykonać telefonu w celu umówienia wizyty, będzie mógł on dodać ją do wspomnianej zakładki i przykładowo następnego dnia szybko odnaleźć numer telefonu.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dodawanie wybranych przez użytkownika placówek do zakładki "Ulubione" pozwala na szybsze poruszanie się po stronie. Gdy jednego dnia użytkownik będzie chciał wyszukać placówkę, jednak nie będzie miał czasu wykonać telefonu w celu umówienia wizyty, będzie mógł on dodać ją do wspomnianej zakładki i przykładowo następnego dnia szybko odnaleźć numer telefonu.
 </div>
 </div>
 <br>
@@ -69,7 +69,7 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 <img src="history.png" alt="Historia wyszukiwania" width="1000rem"/>
 <div align="center"><i>Ekran histori aplikacji FastMed</i></div>
 <br>
-    Aplikacja posiada funkcjonalność polegającą na automatycznym zapisywaniu historii wyszukiwania użytkownika. Funkcja ta jest bardzo przydatna, gdyż po wejściu w zakładkę "Historia" łatwo znaleźć załadowane wcześniej rekordy. Będzie to na pewno duża udogodność dla osób z chorobami przewlekłymi, u których choroby pojawiają się w większej częstotliwości.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aplikacja posiada funkcjonalność polegającą na automatycznym zapisywaniu historii wyszukiwania użytkownika. Funkcja ta jest bardzo przydatna, gdyż po wejściu w zakładkę "Historia" łatwo znaleźć załadowane wcześniej rekordy. Będzie to na pewno duża udogodność dla osób z chorobami przewlekłymi, u których choroby pojawiają się w większej częstotliwości.
 </div>
 </div>
 <br>

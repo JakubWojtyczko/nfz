@@ -41,7 +41,9 @@ Niestety z powodów technicznych nasza aplikacja hostowana jest na serwerze zewn
 ## Logowanie oraz rejstracja do aplikacji
 <div>
 <div style="text-align: justify">
-<img src="login.png" alt="Wyszukiwanie po składnikach" width="500rem" style="float: left;"/> Rejestracja konta oraz logowanie pozwala na używanie większej ilości funkcji w aplikacji FastMed. Funkcjami tymi jest mozliwość dodawania, usuwania oraz sprawdzania listy swoich ulubionych placówek oraz automatyczne zapisywanie wyszukiwanych przez nas wcześniej placówek.
+<img src="login.png" alt="Wyszukiwanie po składnikach" width="1000rem"/>
+<br>
+    Rejestracja konta oraz logowanie pozwala na używanie większej ilości funkcji w aplikacji FastMed. Funkcjami tymi jest mozliwość dodawania, usuwania oraz sprawdzania listy swoich ulubionych placówek oraz automatyczne zapisywanie wyszukiwanych przez nas wcześniej placówek.
 </div>
 </div>
 <br>
